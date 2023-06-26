@@ -1,0 +1,171 @@
+{
+  "format" : "10.0.0",
+  "id" : "18822D67B169266A",
+  "kind" : "CALLABLE_SUB",
+  "config" : {
+    "data" : "com.axonivy.connector.adobe.esign.connector.TransientDocumentsData"
+  },
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "CallSubStart",
+      "name" : "uploadDocument(file)",
+      "config" : {
+        "callSignature" : "uploadDocument",
+        "input" : {
+          "params" : [
+            { "name" : "file", "type" : "java.io.File", "desc" : "file to upload" }
+          ],
+          "map" : {
+            "out.file" : "param.file"
+          }
+        },
+        "result" : {
+          "params" : [
+            { "name" : "id", "type" : "String", "desc" : "id of uploaded file" },
+            { "name" : "error", "type" : "ch.ivyteam.ivy.bpm.error.BpmError", "desc" : "holds error if one occurs, empty otherwise" }
+          ],
+          "map" : {
+            "result.id" : "in.#id",
+            "result.error" : "in.#error"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : { "id" : "f8", "to" : "f7" }
+    }, {
+      "id" : "f1",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 352, "y" : 64 }
+      }
+    }, {
+      "id" : "f7",
+      "type" : "RestClientCall",
+      "config" : {
+        "bodyForm" : {
+          "File-Name" : "",
+          "Mime-Type" : "",
+          "File" : "in.file"
+        },
+        "path" : "/transientDocuments",
+        "clientId" : "6a243983-5f6d-4278-89ec-aab09fea161c",
+        "clientErrorCode" : "ivy:error:rest:client",
+        "method" : "POST",
+        "statusErrorCode" : "ivy:error:rest:client",
+        "responseMapping" : {
+          "out.id" : "result.transientDocumentId"
+        },
+        "bodyObjectType" : "api.rest.v6.client.TransientDocumentsBody",
+        "resultType" : "api.rest.v6.client.TransientDocumentResponse",
+        "bodyInputType" : "FORM",
+        "bodyMediaType" : "multipart/form-data"
+      },
+      "visual" : {
+        "at" : { "x" : 232, "y" : 64 }
+      },
+      "boundaries" : [ {
+          "id" : "f9",
+          "type" : "ErrorBoundaryEvent",
+          "config" : {
+            "output" : {
+              "map" : {
+                "out" : "in",
+                "out.error" : "#error"
+              }
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 264, "y" : 106 }
+          },
+          "connect" : { "id" : "f10", "to" : "f1" }
+        } ],
+      "connect" : { "id" : "f4", "to" : "f1" }
+    }, {
+      "id" : "f2",
+      "type" : "CallSubStart",
+      "name" : "uploadDocument(UploadWrapper)",
+      "config" : {
+        "callSignature" : "uploadDocument",
+        "input" : {
+          "params" : [
+            { "name" : "upload", "type" : "com.axonivy.connector.adobe.esign.connector.rest.UploadWrapper", "desc" : "file to upload" }
+          ],
+          "map" : {
+            "out.upload" : "param.upload"
+          }
+        },
+        "result" : {
+          "params" : [
+            { "name" : "id", "type" : "String", "desc" : "id of uploaded file" },
+            { "name" : "error", "type" : "ch.ivyteam.ivy.bpm.error.BpmError", "desc" : "holds error if one occurs, empty otherwise" }
+          ],
+          "map" : {
+            "result.id" : "in.#id",
+            "result.error" : "in.#error"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 184 }
+      },
+      "connect" : { "id" : "f13", "to" : "f5" }
+    }, {
+      "id" : "f3",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 352, "y" : 184 }
+      }
+    }, {
+      "id" : "f5",
+      "type" : "RestClientCall",
+      "config" : {
+        "bodyForm" : {
+          "File-Name" : "",
+          "Mime-Type" : "",
+          "File" : "in.file"
+        },
+        "path" : "/transientDocuments",
+        "clientId" : "6a243983-5f6d-4278-89ec-aab09fea161c",
+        "clientErrorCode" : "ivy:error:rest:client",
+        "method" : "JAX_RS",
+        "statusErrorCode" : "ivy:error:rest:client",
+        "clientCode" : [
+          "import com.axonivy.connector.adobe.esign.connector.rest.UploadResult;",
+          "import com.axonivy.connector.adobe.esign.connector.rest.ClientService;",
+          "UploadResult result = ClientService.upload(client, in.upload.filename, in.upload.bytes);",
+          "",
+          "if(!result.#error is initialized) {",
+          "  in.id = result.#id;",
+          "} else {",
+          "  in.error = result.#error;",
+          "}"
+        ],
+        "bodyObjectType" : "api.rest.v6.client.TransientDocumentsBody",
+        "resultType" : "api.rest.v6.client.TransientDocumentResponse",
+        "bodyInputType" : "FORM",
+        "bodyMediaType" : "multipart/form-data"
+      },
+      "visual" : {
+        "at" : { "x" : 232, "y" : 184 }
+      },
+      "boundaries" : [ {
+          "id" : "f6",
+          "type" : "ErrorBoundaryEvent",
+          "config" : {
+            "output" : {
+              "map" : {
+                "out" : "in",
+                "out.error" : "#error"
+              }
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 264, "y" : 226 }
+          },
+          "connect" : { "id" : "f12", "to" : "f3" }
+        } ],
+      "connect" : { "id" : "f11", "to" : "f3" }
+    } ]
+}

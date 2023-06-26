@@ -1,0 +1,88 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
+  xmlns:pe="http://primefaces.org/ui/extensions">
+<h:body>
+  <ui:composition template="/layouts/basic-10.xhtml">
+    
+    <ui:define name="title">Demo</ui:define>
+    <ui:define name="content">
+
+		<script type="text/javascript">
+	    	function closeSigningDlg() {
+				PF('dlgIframe').hide();
+				updateDocument();
+	    	}
+		</script>
+      <h3>
+        Adobe Sign Demos. Please enter a recipient and click one of the buttons to start a demo!
+      </h3>
+
+      <h:form id="form" enctype="multipart/form-data">
+      	<p:remoteCommand name="updateDocument" actionListener="#{logic.updateDocuments}" update="@form" />
+        <p:messages />
+        <p:panelGrid columns="2" layout="grid" styleClass="ui-panelgrid-blank ui-fluid" 
+          columnClasses="ui-g-12 ui-md-3 ui-lg-2, ui-g-12 ui-md-9 ui-lg-4, ui-g-12 ui-md-3 ui-lg-2, ui-g-12 ui-md-9 ui-lg-4">
+
+			<h:outputText value="Select a file to upload and sign" />
+            <p:fileUpload value="#{data.file}" mode="simple" id="fileUpload" skinSimple="true" />
+            
+			<p:outputLabel for="@next" value="Signer 1" />
+			<p:inputText value="#{data.signer1}" />
+			
+			<p:outputLabel for="@next" value="Signer 2" />
+			<p:inputText value="#{data.signer2}" />
+			
+			<p:outputLabel for="@next" value="Agreement ID" />
+        	<p:inputText id="agreementId" value="#{data.agreementId}" />
+
+			<p:commandButton value="Create Agreement 1" actionListener="#{logic.demo1Signer}" update="@form" process="@form" />
+        	<p:outputLabel value="creates a new agreement for 1 signer " />
+        	
+        	<p:commandButton value="Create Agreement 2" actionListener="#{logic.demo2Signer}" update="@form" process="@form" />
+        	<p:outputLabel value="creates a new agreement for 2 signers " />
+        	
+        	<p:commandButton value="Load existing Agreement" actionListener="#{logic.updateDocuments}" update="@form" process="@form" />
+        	<p:outputLabel value="loads the data for an existing agreement" />
+
+        	<p:commandButton value="Sign as Signer 1" actionListener="#{logic.sign1}" 
+        		process="@form"
+        		update="@form #{p:resolveFirstComponentWithId('dlgIframe', view).clientId}"
+        		oncomplete="PF('dlgIframe').show()"/>
+        	<p:outputLabel value="Sign Embedded" />
+        	
+        	<p:commandButton value="Sign as Signer 2" actionListener="#{logic.sign2}" 
+        		process="@form"
+        		update="@form #{p:resolveFirstComponentWithId('dlgIframe', view).clientId}"
+        		oncomplete="PF('dlgIframe').show()"/>
+        	<p:outputLabel value="Sign Embedded" />
+        	
+        	<p:commandButton value="Update documents" actionListener="#{logic.updateDocuments}" update="@form" process="@form" />
+        	<p:outputLabel value="Updates list of documents" />
+        	<p:outputLabel value="list of documents" rendered="#{data.documents.getDocuments().size() gt 0}" />
+        	<p:dataTable id="documentTable" value="#{data.documents.getDocuments()}" rendered="#{data.documents.getDocuments().size() gt 0}" var="d">
+        		<p:column id="doc">
+        			<p:commandLink id="docLink" value="#{d.name}" actionListener="#{logic.downloadDocument(d.id, d.name)}" ajax="false" >
+        				<p:fileDownload value="#{data.documentContent}" />
+        			</p:commandLink>
+        		</p:column>
+        	</p:dataTable>
+
+        </p:panelGrid>
+        <br />
+        <div class="command-btns">
+          <p:commandLink id="close" actionListener="#{ivyWorkflowView.cancel()}" value="Close" />
+        </div>
+      </h:form>
+
+		<p:dialog id="dlgIframe" widgetVar="dlgIframe" modal="true" header="Please sign the document" width="80%" height="400" draggable="true" maximizable="true">
+			<iframe id="signIframe" name="signIframe" src="#{data.signingURI}" style="border-width: 0PX;" width="100%" height="100%">
+			<p>Your browser does not support iframes.</p>
+			</iframe>
+		</p:dialog>
+
+    </ui:define>
+  </ui:composition>
+</h:body>
+
+</html>

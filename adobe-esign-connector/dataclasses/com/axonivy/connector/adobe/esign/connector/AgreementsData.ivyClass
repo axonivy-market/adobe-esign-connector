@@ -1,0 +1,15 @@
+AgreementsData #class
+com.axonivy.connector.adobe.esign.connector #namespace
+agreementCreation api.rest.v6.client.AgreementCreationInfo #field
+error ch.ivyteam.ivy.bpm.error.BpmError #field
+agreementCreationResponse api.rest.v6.client.AgreementCreationResponse #field
+agreementId String #field
+agreementInfo api.rest.v6.client.AgreementInfo #field
+signingUrls java.util.List<api.rest.v6.client.SigningUrlResponseSigningUrlSetInfos> #field
+frameParent String #field
+documents api.rest.v6.client.AgreementDocuments #field
+documentId String #field
+download com.axonivy.connector.adobe.esign.connector.rest.DownloadResult #field
+filename String #field
+asFileOption Boolean #field
+formFieldPutInfo api.rest.v6.client.FormFieldPutInfo #field

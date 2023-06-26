@@ -1,0 +1,6 @@
+DemoData #class
+com.axonivy.connector.adobe.esign.connector.demo #namespace
+file java.io.File #field
+fileId String #field
+agreementId String #field
+error ch.ivyteam.ivy.bpm.error.BpmError #field

@@ -1,0 +1,48 @@
+{
+  "format" : "10.0.0",
+  "id" : "1866EFD0633915B6",
+  "kind" : "CALLABLE_SUB",
+  "config" : {
+    "data" : "com.axonivy.connector.adobe.esign.connector.BaseUrisData"
+  },
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "CallSubStart",
+      "name" : "call()",
+      "config" : {
+        "callSignature" : "call"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : { "id" : "f4", "to" : "f3" }
+    }, {
+      "id" : "f1",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 352, "y" : 64 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "RestClientCall",
+      "config" : {
+        "path" : "/baseUris",
+        "headers" : {
+          "Accept" : "*/*",
+          "Authorization" : "\"Bearer 3AAABLblqZhAzw3xeMAg0OJ_aouHskZvurSIreo4VCqw-Iqla6aYwav8m1vTm5AHGOXndztXnqUni_wxNMTM83Rdr-qxUrhe9\""
+        },
+        "clientId" : "9774590a-7adb-4910-8a53-22b68e50d9ed",
+        "clientErrorCode" : "ivy:error:rest:client",
+        "statusErrorCode" : "ivy:error:rest:client",
+        "resultType" : "api.rest.v6.client.BaseUriInfo",
+        "responseCode" : [
+          "ivy.log.fatal(\"api: {0}\", result.apiAccessPoint);",
+          "ivy.log.fatal(\"web: {0}\", result.webAccessPoint);"
+        ]
+      },
+      "visual" : {
+        "at" : { "x" : 224, "y" : 64 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    } ]
+}

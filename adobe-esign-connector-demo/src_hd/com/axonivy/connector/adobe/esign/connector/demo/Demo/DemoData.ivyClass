@@ -1,0 +1,24 @@
+DemoData #class
+com.axonivy.connector.adobe.esign.connector.demo.Demo #namespace
+file File #field
+file PERSISTENT #fieldModifier
+documentId String #field
+documentId PERSISTENT #fieldModifier
+agreementId String #field
+agreementId PERSISTENT #fieldModifier
+signingURI String #field
+signingURI PERSISTENT #fieldModifier
+signer1 String #field
+signer1 PERSISTENT #fieldModifier
+signer2 String #field
+signer2 PERSISTENT #fieldModifier
+authoringURI String #field
+authoringURI PERSISTENT #fieldModifier
+documents api.rest.v6.client.AgreementDocuments #field
+documents PERSISTENT #fieldModifier
+documentContent org.primefaces.model.StreamedContent #field
+documentContent PERSISTENT #fieldModifier
+download com.axonivy.connector.adobe.esign.connector.rest.DownloadResult #field
+download PERSISTENT #fieldModifier
+filename String #field
+filename PERSISTENT #fieldModifier
