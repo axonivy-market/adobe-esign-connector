@@ -7,12 +7,12 @@ RestClients:
     - com.axonivy.connector.adobe.esign.connector.auth.OAuth2Feature
     Properties:
       AUTH.scope: ${ivy.var.adobe-sign-connector.permissions}
-      AUTH.baseUri: https://secure.eu2.adobesign.com/public/oauth/v2
+      AUTH.baseUri: ${ivy.var.adobe-sign-connector.baseUri}
       JSON.Serialization.PROPERTY_INCLUSION: NON_NULL
       AUTH.clientId: ${ivy.var.adobe-sign-connector.clientId}
       AUTH.clientSecret: ${ivy.var.adobe-sign-connector.clientSecret}
       PATH.host: ${ivy.var.adobe-sign-connector.host}
-      AUTH.code: CBNCKBAAHBCAABAA9JaRyyCNHSY6LBtR_pOJxKqufIcvpxoj
+      AUTH.code: ${ivy.var.adobe-sign-connector.code}
       AUTH.integrationKey: ${ivy.var.adobe-sign-connector.integrationKey}
     OpenAPI:
       SpecUrl: file:///C:/Users/jpl/Downloads/json/REST-SDK-V6-master/json/usersV3.json
@@ -34,7 +34,7 @@ RestClients:
     - com.axonivy.connector.adobe.esign.connector.auth.OAuth2Feature
     Properties:
       AUTH.scope: ${ivy.var.adobe-sign-connector.permissions}
-      AUTH.baseUri: https://secure.eu2.adobesign.com/public/oauth/v2
+      AUTH.baseUri: ${ivy.var.adobe-sign-connector.baseUri}
       JSON.Serialization.PROPERTY_INCLUSION: NON_NULL
       AUTH.appId: ${ivy.var.adobe-sign-connector.appId}
       AUTH.secretKey: ${ivy.var.adobe-sign-connector.secretKey}
@@ -57,7 +57,7 @@ RestClients:
     - com.axonivy.connector.adobe.esign.connector.auth.OAuth2Feature
     Properties:
       AUTH.scope: ${ivy.var.adobe-sign-connector.permissions}
-      AUTH.baseUri: https://secure.eu2.adobesign.com/public/oauth/v2
+      AUTH.baseUri: ${ivy.var.adobe-sign-connector.baseUri}
       JSON.Serialization.PROPERTY_INCLUSION: NON_NULL
       AUTH.appId: ${ivy.var.adobe-sign-connector.appId}
       AUTH.secretKey: ${ivy.var.adobe-sign-connector.secretKey}
