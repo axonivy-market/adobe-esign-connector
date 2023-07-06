@@ -10,7 +10,8 @@
       "name" : "signingReturn.ivp",
       "config" : {
         "callSignature" : "signingReturn",
-        "outLink" : "signingReturn.ivp"
+        "outLink" : "signingReturn.ivp",
+        "showInStartList" : false
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 64 }
