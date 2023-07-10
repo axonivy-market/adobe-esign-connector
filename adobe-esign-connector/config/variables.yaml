@@ -6,20 +6,3 @@
 # '<project>/Config/_<environment>/variables.yaml
 #
 Variables:
-  adobe-sign-connector:
-    # A Base URI to be used for subsequent calls (/oauth/v2/refresh and /oauth/v2/revoke)
-    baseUri: ''
-    host: ''
-    integrationKey: ''
-    returnPage: ''
-    permissions: ''
-    clientId: ''
-    clientSecret: ''
-    appId: ''
-    secretKey: ''
-    useAppPermissions: ''
-    code: ''
-    useUserPassFlow:
-      enabled: ''
-      user: ''
-      pass: ''

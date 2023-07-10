@@ -113,8 +113,11 @@
             "",
             "List<AgreementsFormFieldGenerators> generator;",
             "generator.add(AdobeSignService.getInstance().createFormFieldWithAnchor(\"SIGNATURE_ANCHOR\", ContentTypeEnum.SIGNATURE, 0, 0));",
+            "List<String> documentIds;",
+            "documentIds.add(\"3AAABLblqZhBsqs68phWjsqCZhVGoV658jrcsTFeVqfqT_qyXnkXY6YvPLcwQMXUACiViSnDqtXibmIj55hZkFnlKZorpCyq9oI3W6CFukovBLY3AabxnyU0oGxx7UZNJVPmSWHlxnkFA5dLbr0MswUM1MPmwwskc4kcKgjXEmO43V9pREDT0ONJpYbgMJHbxPYIBBuh-u7sRs0vV6APDtHnkdwCo4R7zMkoK_udWIo5g9NRL_o-aNn26o7aDVjDzFDXMNJyvN3CQnFwrHzl5n4b06lPDneEIL5LISb1coMzZlw8dN5_QB3qLOG7TrTf057davR8WfQZnWeNbHv5vXW0XLe4NLXTZ5SREUpb2JIDv-o9NrPZqsA**\");",
             "",
-            "param.agreement = AdobeSignService.getInstance().buildSimpleAgreementWithFormFields(\"MyFirstAgreementWithAnchor\", \"3AAABLblqZhBsqs68phWjsqCZhVGoV658jrcsTFeVqfqT_qyXnkXY6YvPLcwQMXUACiViSnDqtXibmIj55hZkFnlKZorpCyq9oI3W6CFukovBLY3AabxnyU0oGxx7UZNJVPmSWHlxnkFA5dLbr0MswUM1MPmwwskc4kcKgjXEmO43V9pREDT0ONJpYbgMJHbxPYIBBuh-u7sRs0vV6APDtHnkdwCo4R7zMkoK_udWIo5g9NRL_o-aNn26o7aDVjDzFDXMNJyvN3CQnFwrHzl5n4b06lPDneEIL5LISb1coMzZlw8dN5_QB3qLOG7TrTf057davR8WfQZnWeNbHv5vXW0XLe4NLXTZ5SREUpb2JIDv-o9NrPZqsA**\", \"jpl@mailinator.com\", ",
+            "param.agreement = AdobeSignService.getInstance().buildSimpleAgreementWithFormFields(\"MyFirstAgreementWithAnchor\", documentIds,",
+            "  \"jpl@mailinator.com\", ",
             "  generator);"
           ]
         },

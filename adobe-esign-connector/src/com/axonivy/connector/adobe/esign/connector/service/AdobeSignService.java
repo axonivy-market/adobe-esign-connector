@@ -98,7 +98,8 @@ public class AdobeSignService {
 	 */
 	public String uploadDocumentAndCreateSimpleAgreementWithFormFields(String name, String signerEmail, UploadWrapper upload, List<AgreementsFormFieldGenerators> formFieldGenerators) {
 		String documentId = uploadDocument(upload);
-		String agreementId = createAgreement(buildSimpleAgreementWithFormFields(name, documentId, signerEmail, formFieldGenerators));
+		String agreementId = createAgreement(
+				buildSimpleAgreementWithFormFields(name, Arrays.asList(documentId), signerEmail, formFieldGenerators));
 		
 		return agreementId;
 	}
@@ -113,7 +114,7 @@ public class AdobeSignService {
 	 * @return
 	 */
 	public AgreementCreationInfo buildSimpleAgreement(String name, String documentId, String signerEmail) {
-		return buildSimpleAgreementWithFormFields(name, documentId, signerEmail, null);
+		return buildSimpleAgreementWithFormFields(name, Arrays.asList(documentId), signerEmail, null);
 	}
 	
 	/**
@@ -125,7 +126,8 @@ public class AdobeSignService {
 	 * @param signerEmail
 	 * @return
 	 */
-	public AgreementCreationInfo buildSimpleAgreementWithFormFields(String name, String documentId, String signerEmail, List<AgreementsFormFieldGenerators> formFieldGenerators) {
+	public AgreementCreationInfo buildSimpleAgreementWithFormFields(String name, List<String> documentIds,
+			String signerEmail, List<AgreementsFormFieldGenerators> formFieldGenerators) {
 		AgreementCreationInfo agreement = new AgreementCreationInfo();
 		
 		agreement.setName(name);
@@ -137,7 +139,7 @@ public class AdobeSignService {
 		agreement.setParticipantSetsInfo(createParticipantInfoForEmail(Arrays.asList(signerEmail), RoleEnum.SIGNER));
 		
 		// add documentIds - need to be already transferred with the upload document service
-		agreement.setFileInfos(createFileInfosForDocumentIds(Arrays.asList(documentId)));
+		agreement.setFileInfos(createFileInfosForDocumentIds(documentIds));
 		
 		agreement.setEmailOption(createAllDisabledSendOptions());
 		
