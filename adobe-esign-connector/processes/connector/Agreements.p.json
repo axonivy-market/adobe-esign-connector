@@ -204,6 +204,14 @@
       "boundaries" : [ {
           "id" : "f16",
           "type" : "ErrorBoundaryEvent",
+          "config" : {
+            "output" : {
+              "map" : {
+                "out" : "in",
+                "out.error" : "#error"
+              }
+            }
+          },
           "visual" : {
             "at" : { "x" : 312, "y" : 352 }
           },
