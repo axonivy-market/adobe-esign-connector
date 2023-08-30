@@ -3,16 +3,12 @@ package com.axonivy.connector.adobe.esign.connector.ui.util;
 import java.io.ByteArrayInputStream;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.io.InputStream;
 
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
 
 import com.axonivy.connector.adobe.esign.connector.rest.DownloadResult;
-
-import ch.ivyteam.ivy.environment.Ivy;
-import ch.ivyteam.ivy.scripting.objects.File;
 
 /**
  * Utility class for JSF file handling e.g. to create StreamedContent
