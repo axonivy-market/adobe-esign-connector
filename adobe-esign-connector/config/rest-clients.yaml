@@ -36,12 +36,10 @@ RestClients:
       AUTH.scope: ${ivy.var.adobe-sign-connector.permissions}
       AUTH.baseUri: ${ivy.var.adobe-sign-connector.baseUri}
       JSON.Serialization.PROPERTY_INCLUSION: NON_NULL
-      AUTH.appId: ${ivy.var.adobe-sign-connector.appId}
-      AUTH.secretKey: ${ivy.var.adobe-sign-connector.secretKey}
+      AUTH.clientId: ${ivy.var.adobe-sign-connector.clientId}
+      AUTH.clientSecret: ${ivy.var.adobe-sign-connector.clientSecret}
       AUTH.useAppPermissions: ${ivy.var.adobe-sign-connector.useAppPermissions}
       AUTH.useUserPassFlow: ${ivy.var.adobe-sign-connector.useUserPassFlow.enabled}
-      AUTH.user: ${ivy.var.adobe-sign-connector.useUserPassFlow.user}
-      AUTH.password: ${ivy.var.adobe-sign-connector.useUserPassFlow.pass}
       PATH.host: ${ivy.var.adobe-sign-connector.host}
       AUTH.integrationKey: ${ivy.var.adobe-sign-connector.integrationKey}
     OpenAPI:
@@ -59,12 +57,10 @@ RestClients:
       AUTH.scope: ${ivy.var.adobe-sign-connector.permissions}
       AUTH.baseUri: ${ivy.var.adobe-sign-connector.baseUri}
       JSON.Serialization.PROPERTY_INCLUSION: NON_NULL
-      AUTH.appId: ${ivy.var.adobe-sign-connector.appId}
-      AUTH.secretKey: ${ivy.var.adobe-sign-connector.secretKey}
+      AUTH.clientId: ${ivy.var.adobe-sign-connector.clientId}
+      AUTH.clientSecret: ${ivy.var.adobe-sign-connector.clientSecret}
       AUTH.useAppPermissions: ${ivy.var.adobe-sign-connector.useAppPermissions}
       AUTH.useUserPassFlow: ${ivy.var.adobe-sign-connector.useUserPassFlow.enabled}
-      AUTH.user: ${ivy.var.adobe-sign-connector.useUserPassFlow.user}
-      AUTH.password: ${ivy.var.adobe-sign-connector.useUserPassFlow.pass}
       PATH.host: ${ivy.var.adobe-sign-connector.host}
       AUTH.integrationKey: ${ivy.var.adobe-sign-connector.integrationKey}
     OpenAPI:

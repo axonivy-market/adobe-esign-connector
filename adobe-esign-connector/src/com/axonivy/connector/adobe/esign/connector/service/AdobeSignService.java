@@ -5,6 +5,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletRequest;
+
 import com.axonivy.connector.adobe.esign.connector.rest.DownloadResult;
 import com.axonivy.connector.adobe.esign.connector.rest.UploadWrapper;
 
@@ -36,6 +39,7 @@ import ch.ivyteam.ivy.bpm.error.BpmError;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.process.call.SubProcessCall;
 import ch.ivyteam.ivy.process.call.SubProcessCallResult;
+import ch.ivyteam.ivy.request.IHttpRequest;
 
 /**
  * Service class to call Adobe Sign services and create necessary objects
@@ -143,7 +147,9 @@ public class AdobeSignService {
 		
 		agreement.setEmailOption(createAllDisabledSendOptions());
 		
-		agreement.postSignOption(new AgreementsPostSignOption().redirectUrl(Ivy.var().get("adobe-sign-connector.returnPage")));
+		String baseUrl = getRequestBaseUrl();
+		String fullUrl = baseUrl + Ivy.var().get("adobe-sign-connector.returnPage");
+		agreement.postSignOption(new AgreementsPostSignOption().redirectUrl(fullUrl));
 		
 		if(Objects.nonNull(formFieldGenerators)) {
 			agreement.setFormFieldGenerators(formFieldGenerators);
@@ -431,6 +437,23 @@ public class AdobeSignService {
 		if(Objects.nonNull(error)) {
 			throw error;
 		}
+	}
+	
+	/**
+	 * Extracts the base url from actual request.
+	 * Example: http://localhost:8081
+	 * @return
+	 */
+	private String getRequestBaseUrl() {
+		Ivy.request().getRequestPath();
+		HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        StringBuilder baseUrlBuilder = new StringBuilder();
+        baseUrlBuilder.append(request.getScheme()).append("://").append(request.getServerName());
+        int port = request.getServerPort();
+        if (port != 80 && port != 443) {
+            baseUrlBuilder.append(":").append(port);
+        }
+        return baseUrlBuilder.toString();
 	}
 	
 }
