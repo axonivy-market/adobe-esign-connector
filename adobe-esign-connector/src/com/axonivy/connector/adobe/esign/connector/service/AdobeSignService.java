@@ -445,8 +445,8 @@ public class AdobeSignService {
 	 * @return
 	 */
 	private String getRequestBaseUrl() {
-		Ivy.request().getRequestPath();
-		HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+		IHttpRequest req = (IHttpRequest) Ivy.request();
+		HttpServletRequest request = req.getHttpServletRequest();
         StringBuilder baseUrlBuilder = new StringBuilder();
         baseUrlBuilder.append(request.getScheme()).append("://").append(request.getServerName());
         int port = request.getServerPort();
