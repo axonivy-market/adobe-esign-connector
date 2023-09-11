@@ -1,0 +1,14 @@
+AuthSetupData #class
+com.axonivy.connector.adobe.esign.connector.AuthSetup #namespace
+host String #field
+host PERSISTENT #fieldModifier
+baseUri String #field
+baseUri PERSISTENT #fieldModifier
+oauthUri String #field
+oauthUri PERSISTENT #fieldModifier
+clientId String #field
+clientId PERSISTENT #fieldModifier
+clientSecret String #field
+clientSecret PERSISTENT #fieldModifier
+permissions String #field
+permissions PERSISTENT #fieldModifier

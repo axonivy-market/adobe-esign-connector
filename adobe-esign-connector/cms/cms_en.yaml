@@ -1,0 +1,9 @@
+Dialogs:
+  com:
+    axonivy:
+      connector:
+        adobe:
+          esign:
+            connector:
+              AuthSetup:
+                Title: Authentication setup

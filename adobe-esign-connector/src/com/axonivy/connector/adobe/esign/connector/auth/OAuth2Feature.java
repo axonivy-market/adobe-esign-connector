@@ -17,17 +17,17 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriBuilder;
 import javax.ws.rs.core.UriBuilderException;
 
+import com.axonivy.connector.adobe.esign.connector.auth.oauth.OAuth2TokenRequester.AuthContext;
+import com.axonivy.connector.adobe.esign.connector.auth.oauth.OAuth2BearerFilter;
+import com.axonivy.connector.adobe.esign.connector.auth.oauth.OAuth2UriProperty;
+import com.axonivy.connector.adobe.esign.connector.enums.AdobeVariable;
+
 import ch.ivyteam.ivy.bpm.error.BpmPublicErrorBuilder;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.rest.client.FeatureConfig;
-import ch.ivyteam.ivy.rest.client.oauth2.OAuth2BearerFilter;
 import ch.ivyteam.ivy.rest.client.oauth2.OAuth2RedirectErrorBuilder;
-import ch.ivyteam.ivy.rest.client.oauth2.OAuth2TokenRequester.AuthContext;
 import ch.ivyteam.ivy.rest.client.oauth2.uri.OAuth2CallbackUriBuilder;
 
-/**
- * @since 9.2
- */
 public class OAuth2Feature implements Feature {
 
   public static interface Property {
@@ -46,13 +46,14 @@ public class OAuth2Feature implements Feature {
   public boolean configure(FeatureContext context) {
 	
     var config = new FeatureConfig(context.getConfiguration(), OAuth2Feature.class);
-	var docuSignUri = new OAuth2UriProperty(config, Property.AUTH_BASE_URI,
+    
+	var adobeSignUri = new OAuth2UriProperty(config, Property.AUTH_BASE_URI,
 			"https://api.eu2.echosign.com/oauth/v2");
 	var oauth2 = new OAuth2BearerFilter(
-			ctxt -> requestToken(ctxt, docuSignUri),
-			docuSignUri);
+			ctxt -> requestToken(ctxt, adobeSignUri),
+			adobeSignUri);
 	context.register(oauth2, Priorities.AUTHORIZATION);
-	    context.register(BearerTokenAuthorizationFilter.class, Priorities.AUTHORIZATION - 10);
+//	    context.register(BearerTokenAuthorizationFilter.class, Priorities.AUTHORIZATION - 10);
     return true;
   }
 
@@ -90,7 +91,6 @@ public class OAuth2Feature implements Feature {
 				  .post(Entity.form(authRequest.paramsMap()));
 	  } else {
 		  RefreshTokenRequest authRequest = new RefreshTokenRequest(refreshToken.get(), clientId, clientSecret);
-		  tokenUri = uriFactory.getRefreshUri();
 		  response = ctxt.target
 				  .request()
 				  .post(Entity.form(authRequest.paramsMap()));
@@ -183,7 +183,8 @@ public class OAuth2Feature implements Feature {
 
   private static BpmPublicErrorBuilder authRedirectError(FeatureConfig config, OAuth2UriProperty uriFactory) throws IllegalArgumentException, UriBuilderException, URISyntaxException {
     URI redirectUri = OAuth2CallbackUriBuilder.create().toUrl();
-    var uri = UriBuilder.fromUri(new URI(Ivy.var().get("adobe-sign-connector.authenticationUri")))
+    String authUri = AdobeVariable.AUTHENTICATION_URI.getValue();
+    var uri = UriBuilder.fromUri(new URI(authUri))
     		.queryParam("redirect_uri", redirectUri)
             .queryParam("response_type", "code")
             .queryParam("client_id", config.readMandatory(Property.CLIENT_ID))

@@ -1,4 +1,4 @@
-package com.axonivy.connector.adobe.esign.connector.auth;
+package com.axonivy.connector.adobe.esign.connector.auth.oauth;
 
 import java.net.URI;
 

@@ -15,4 +15,5 @@ Variables:
     clientId: 
     clientSecret: 
     permissions: user_read:account user_write:account user_login:account agreement_read:account agreement_write:account agreement_send:account widget_read:account widget_write:account library_read:account library_write:account workflow_read:account workflow_write:account
+    oauthToken: default-value
 #    permissions: user_login:account agreement_write:account

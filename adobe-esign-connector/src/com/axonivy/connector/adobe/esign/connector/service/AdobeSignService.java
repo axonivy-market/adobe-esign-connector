@@ -5,7 +5,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
-import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 
 import com.axonivy.connector.adobe.esign.connector.rest.DownloadResult;
