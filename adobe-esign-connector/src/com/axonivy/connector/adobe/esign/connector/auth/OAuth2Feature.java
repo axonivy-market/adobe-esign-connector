@@ -46,7 +46,6 @@ public class OAuth2Feature implements Feature {
 
   @Override
   public boolean configure(FeatureContext context) {
-	
     var config = new FeatureConfig(context.getConfiguration(), OAuth2Feature.class);
     String intKey = config.read(Property.AUTH_INTEGRATION_KEY).orElse("");
     

@@ -27,7 +27,7 @@
       "type" : "DialogCall",
       "name" : "AuthSetup",
       "config" : {
-        "dialogId" : "com.axonivy.connector.adobe.esign.connector.AuthSetup",
+        "dialogId" : "com.axonivy.connector.adobe.esign.connector.AdminSetup",
         "startMethod" : "start()"
       },
       "visual" : {

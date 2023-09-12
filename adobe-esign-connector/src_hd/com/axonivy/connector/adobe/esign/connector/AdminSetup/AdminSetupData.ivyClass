@@ -1,0 +1,20 @@
+AdminSetupData #class
+com.axonivy.connector.adobe.esign.connector.AdminSetup #namespace
+host String #field
+host PERSISTENT #fieldModifier
+baseUri String #field
+baseUri PERSISTENT #fieldModifier
+authenticationUri String #field
+authenticationUri PERSISTENT #fieldModifier
+clientId String #field
+clientId PERSISTENT #fieldModifier
+clientSecret String #field
+clientSecret PERSISTENT #fieldModifier
+permissions String #field
+permissions PERSISTENT #fieldModifier
+integrationKey String #field
+integrationKey PERSISTENT #fieldModifier
+returnPage String #field
+returnPage PERSISTENT #fieldModifier
+oauthToken String #field
+oauthToken PERSISTENT #fieldModifier

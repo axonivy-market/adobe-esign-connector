@@ -5,5 +5,9 @@ Dialogs:
         adobe:
           esign:
             connector:
-              AuthSetup:
+              AdminSetup:
+                General: General
+                IntegrationKey: Integration key
+                OAuth: OAuth
+                RequestToken: Request Token
                 Title: Authentication setup
