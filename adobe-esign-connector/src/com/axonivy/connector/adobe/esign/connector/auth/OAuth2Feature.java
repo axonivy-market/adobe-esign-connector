@@ -17,6 +17,8 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriBuilder;
 import javax.ws.rs.core.UriBuilderException;
 
+import org.apache.commons.lang3.StringUtils;
+
 import com.axonivy.connector.adobe.esign.connector.auth.oauth.OAuth2TokenRequester.AuthContext;
 import com.axonivy.connector.adobe.esign.connector.auth.oauth.OAuth2BearerFilter;
 import com.axonivy.connector.adobe.esign.connector.auth.oauth.OAuth2UriProperty;
@@ -46,14 +48,21 @@ public class OAuth2Feature implements Feature {
   public boolean configure(FeatureContext context) {
 	
     var config = new FeatureConfig(context.getConfiguration(), OAuth2Feature.class);
+    String intKey = config.read(Property.AUTH_INTEGRATION_KEY).orElse("");
     
-	var adobeSignUri = new OAuth2UriProperty(config, Property.AUTH_BASE_URI,
-			"https://api.eu2.echosign.com/oauth/v2");
-	var oauth2 = new OAuth2BearerFilter(
-			ctxt -> requestToken(ctxt, adobeSignUri),
-			adobeSignUri);
-	context.register(oauth2, Priorities.AUTHORIZATION);
-//	    context.register(BearerTokenAuthorizationFilter.class, Priorities.AUTHORIZATION - 10);
+    // use oauth if integration key is blank, property comes as defined (${ivy.var ...) if the variable is not defined
+    if(StringUtils.isBlank(intKey) || intKey.startsWith("${ivy.var")) {
+    	var adobeSignUri = new OAuth2UriProperty(config, Property.AUTH_BASE_URI,
+    			"https://api.eu2.echosign.com/oauth/v2");
+    	var oauth2 = new OAuth2BearerFilter(
+    			ctxt -> requestToken(ctxt, adobeSignUri),
+    			adobeSignUri);
+    	context.register(oauth2, Priorities.AUTHORIZATION);
+    }
+    else {
+	    context.register(BearerTokenAuthorizationFilter.class, Priorities.AUTHORIZATION - 10);
+    }
+    
     return true;
   }
 
