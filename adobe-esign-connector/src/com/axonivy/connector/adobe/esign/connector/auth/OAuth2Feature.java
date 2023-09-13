@@ -3,8 +3,6 @@ package com.axonivy.connector.adobe.esign.connector.auth;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Optional;
 
 import javax.ws.rs.Priorities;
@@ -19,8 +17,8 @@ import javax.ws.rs.core.UriBuilderException;
 
 import org.apache.commons.lang3.StringUtils;
 
-import com.axonivy.connector.adobe.esign.connector.auth.oauth.OAuth2TokenRequester.AuthContext;
 import com.axonivy.connector.adobe.esign.connector.auth.oauth.OAuth2BearerFilter;
+import com.axonivy.connector.adobe.esign.connector.auth.oauth.OAuth2TokenRequester.AuthContext;
 import com.axonivy.connector.adobe.esign.connector.auth.oauth.OAuth2UriProperty;
 import com.axonivy.connector.adobe.esign.connector.enums.AdobeVariable;
 
@@ -90,7 +88,6 @@ public class OAuth2Feature implements Feature {
 	  }
 	  var clientId = ctxt.config.readMandatory(Property.CLIENT_ID);
 	  var clientSecret = ctxt.config.readMandatory(Property.CLIENT_SECRET);
-	  URI tokenUri = uriFactory.getTokenUri();
 	  Response response = null;
 	  if (!refreshToken.isPresent()) {
 		  AccessTokenRequest authRequest = new AccessTokenRequest(authCode, clientId, clientSecret, OAuth2CallbackUriBuilder.create().toUrl().toString());

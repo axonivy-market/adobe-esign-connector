@@ -33,4 +33,13 @@ public enum AdobeVariable {
 	public String getValue() {
 		return Ivy.var().get(variableName);
 	}
+	
+	/**
+	 * Sets new value to the Variable
+	 * @param newValue
+	 * @return old value that was set before. Empty string if it was not defined.
+	 */
+	public String updateValue(String newValue) {
+		return Ivy.var().set(variableName, newValue);
+	}
 }

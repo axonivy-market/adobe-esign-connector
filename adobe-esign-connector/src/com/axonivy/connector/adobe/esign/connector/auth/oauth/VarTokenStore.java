@@ -5,6 +5,11 @@ import com.google.gson.JsonSyntaxException;
 
 import ch.ivyteam.ivy.environment.Ivy;
 
+/**
+ * Class for storing OAuth token to Variable
+ * @author stefan.masek
+ *
+ */
 public class VarTokenStore {
 	private final String varName;
 
@@ -16,6 +21,10 @@ public class VarTokenStore {
 		this.varName = varName;
 	}
 	
+	/**
+	 * Loads Variable and tries to create the token object {@link Token}
+	 * @return
+	 */
 	public Token getToken() {
 		String tokenVar = Ivy.var().get(varName);
 		Gson gson = new Gson();
@@ -28,6 +37,10 @@ public class VarTokenStore {
 		return token;
 	}
 	
+	/**
+	 * Stores token object {@link Token} as a json to Variable
+	 * @param token
+	 */
 	public void setToken(Token token) {
 		Gson gson = new Gson();
 		String tokenString = gson.toJson(token);

@@ -23,6 +23,17 @@ RestClients:
     Url: https://{host}/api/rest/v6
     Features:
     - ch.ivyteam.ivy.rest.client.mapper.JsonFeature
+    - com.axonivy.connector.adobe.esign.connector.auth.OAuth2Feature
+    Properties:
+      AUTH.scope: ${ivy.var.adobe-sign-connector.permissions}
+      AUTH.baseUri: ${ivy.var.adobe-sign-connector.baseUri}
+      JSON.Serialization.PROPERTY_INCLUSION: NON_NULL
+      AUTH.clientId: ${ivy.var.adobe-sign-connector.clientId}
+      AUTH.clientSecret: ${ivy.var.adobe-sign-connector.clientSecret}
+      AUTH.useAppPermissions: ${ivy.var.adobe-sign-connector.useAppPermissions}
+      AUTH.useUserPassFlow: ${ivy.var.adobe-sign-connector.useUserPassFlow.enabled}
+      PATH.host: ${ivy.var.adobe-sign-connector.host}
+      AUTH.integrationKey: ${ivy.var.adobe-sign-connector.integrationKey}
     OpenAPI:
       SpecUrl: file:///C:/Users/jpl/Downloads/json/REST-SDK-V6-master/json/baseUrisV3.json
       Namespace: api.rest.v6.client

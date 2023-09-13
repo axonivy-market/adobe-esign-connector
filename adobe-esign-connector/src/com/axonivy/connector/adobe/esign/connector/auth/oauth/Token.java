@@ -12,7 +12,7 @@ public class Token {
   private final Instant created;
   private final Map<String, Object> values;
 
-  Token(Map<String, Object> values) {
+  public Token(Map<String, Object> values) {
     this.values = values;
     this.created = Now.asInstant();
   }
