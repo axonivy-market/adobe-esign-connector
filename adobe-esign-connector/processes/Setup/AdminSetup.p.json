@@ -12,7 +12,8 @@
         "callSignature" : "start",
         "responsible" : "ADOBE_ESIGN_ADMIN",
         "outLink" : "start.ivp",
-        "wfuser" : "1"
+        "wfuser" : "1",
+        "startName" : "Adobe Sign Connector Admin Setup"
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 64 }

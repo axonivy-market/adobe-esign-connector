@@ -115,7 +115,7 @@
 							</div>
 							<div class="p-col-12 p-md-4">
 								<p:inputText id="oauthToken" value="#{data.oauthToken}"
-									readonly="false" />
+									readonly="true" />
 								<p:tooltip for="oauthToken" value="#{data.oauthToken}" position="top"/>
 							</div>
 							<div class="p-col-12 p-md-2">
@@ -123,6 +123,16 @@
 									value="#{ivy.cms.co('/Dialogs/com/axonivy/connector/adobe/esign/connector/AdminSetup/RequestToken')}"
 									icon="fa-solid fa-external-link" 
 									actionListener="#{logic.requestToken}"/>
+							</div>
+						</div>
+						<div class="p-field p-grid p-align-baseline">
+							<div class="p-col-12 p-md-6">
+								<p:outputLabel for="redirectUri"
+									value="#{ivy.cms.co('/Dialogs/com/axonivy/connector/adobe/esign/connector/AdminSetup/RedirectURI')}" />
+							</div>
+							<div class="p-col-12 p-md-6">
+								<p:inputTextarea id="redirectUri" value="#{adminSetupBean.redirectUri}"
+									readonly="true" />
 							</div>
 						</div>
 					</div>
