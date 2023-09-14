@@ -56,11 +56,11 @@ To be able to open the Admin Setup page the admin user needs to own `ADOBE_ESIGN
 
  1. Go to your Adobe Sign account page: https://secure.adobesign.com/account/
  2. Open **Access Tokens** configuration 
- ![access-tokens](images/CintegrationKey1.png)
+ ![access-tokens](images/integrationKey1.png)
  3. Create new Integration Key 
- ![create-integration-key](images/CintegrationKey2.png)
+ ![create-integration-key](images/integrationKey2.png)
  4. Copy the Integration Key to the Admin Setup Page
- ![copy-integration-key](images/CintegrationKey3.png)
+ ![copy-integration-key](images/integrationKey3.png)
 
 ### Oauth
 Adobe API doc references for OAuth
