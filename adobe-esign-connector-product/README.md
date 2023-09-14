@@ -22,19 +22,19 @@ To use the Adobe Sign Connector it needs to be connected with Adobe. An Adobe ad
 
  1. Create a **AdobeSign** Company **Account** OR for Developer Account creation use [Create Developer Account, APIs for custom applications | Acrobat Sign](https://www.adobe.com/sign/developer-form.html) an follow the steps:
 	 a. Fill form with personal and business data + continue
-	 ![fill-account-info](images/create%20account%20-%20fill%20info.png)
+	 ![fill-account-info](images/createAccountFillInfo.png)
 	 
 	 b. Provide a password + continue
-	 ![fill-password](images/create%20accounbt%20-%20password.png)
+	 ![fill-password](images/createAccountPassword.png)
 	 
 	 c. Provide date of birth + continue
-	 ![fill-birth-date](images/create%20account%20-%20birth%20date.png)
+	 ![fill-birth-date](images/createAccountBirthDate.png)
 
 	d. You will receive a verification code. Insert the code. Will automatically continue
-	 ![verification-code](images/create%20account%20-%20verification%20code.png)
+	 ![verification-code](images/createAccountVerificationCode.png)
 	
 	e. Developer account is created
-	![account-finished](create%20account%20-%20finished.png)
+	![account-finished](images/createAccountFinished.png)
 
 ### Admin Setup Page
 Adobe Sign Connector provides a setup page for easy setup of the connector and setup of the authentization.
