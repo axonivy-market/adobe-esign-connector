@@ -132,6 +132,3 @@ An API Application needs to be setup at Adobe Sign admin account before OAuth ca
 ![request-permissions](images/tokenRequest3.png)
 4. The token will be retrieved and you should be redirected back to the connector's Admin Setup page and should be able to see the initialized token.
 ![token](images/tokenRequest4.png)
-```
-@variables.yaml@
-```
