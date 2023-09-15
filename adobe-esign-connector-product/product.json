@@ -1,12 +1,12 @@
 {
   "installers": [
     {
-      "id": "maven-import",
+      "id": "maven-dependency",
       "data": {
-        "projects": [
+        "dependencies": [
           {
-            "groupId": "MY-GROUP-ID",
-            "artifactId": "MY-PRODUCT-NAME-demo",
+            "groupId": "com.axonivy.connector.adobe.esign",
+            "artifactId": "adobe-esign-connector",
             "version": "${version}",
             "type": "iar"
           }
@@ -23,35 +23,14 @@
       }
     },
     {
-      "id": "maven-dependency",
+      "id": "maven-import",
       "data": {
-        "dependencies": [
+        "projects": [
           {
-            "groupId": "MY-GROUP-ID",
-            "artifactId": "MY-PRODUCT-NAME",
+            "groupId": "com.axonivy.connector.adobe.esign",
+            "artifactId": "adobe-esign-connector",
             "version": "${version}",
             "type": "iar"
-          }
-        ],
-        "repositories": [
-          {
-            "id": "maven.axonivy.com",
-            "url": "https://maven.axonivy.com",
-            "snapshots": {
-              "enabled": "true"
-            }
-          }
-        ]
-      }
-    }, 
-    {
-      "id": "maven-dropins",
-      "data": {
-        "dependencies": [
-          {
-            "groupId": "MY-GROUP-ID",
-            "artifactId": "MY-PRODUCT-NAME",
-            "version": "${version}"
           }
         ],
         "repositories": [
