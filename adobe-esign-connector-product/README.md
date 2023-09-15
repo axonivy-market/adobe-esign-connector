@@ -1,40 +1,63 @@
 
 # Adobe Sign Connector
 
-The Adobe Sign Connector is a project that simplifies the authentication process and enables easy integration with Adobe Sign services for signing documents.
+The Adobe Sign Connector is a project that simplifies the authentication process and enables easy integration and use of Adobe Sign services for signing documents.
 
 [Adobe Sign](https://www.adobe.com/sign.html)
+
+An Adobe Sign account needs to be created to setup and use the connector.
+
+## Adobe Sign account creation
+
+  1. Create a **AdobeSign** Company **Account** OR for Developer Account creation use [Create Developer Account, APIs for custom applications | Acrobat Sign](https://www.adobe.com/sign/developer-form.html) an follow the steps:
+ 	 a. Fill form with personal and business data + continue
+ 	 ![fill-account-info](images/createAccountFillInfo.png)
+
+ 	 b. Provide a password + continue
+ 	 ![fill-password](images/createAccountPassword.png)
+
+ 	 c. Provide date of birth + continue
+ 	 ![fill-birth-date](images/createAccountBirthDate.png)
+
+ 	d. You will receive a verification code. Insert the code. Will automatically continue
+ 	 ![verification-code](images/createAccountVerificationCode.png)
+
+ 	e. Developer account is created
+ 	![account-finished](images/createAccountFinished.png)
+
+## Demo
+
+The demo project can be used to test the authentication and signing and the demo implementation can be used as inspiration for development.
+
+### How to sign a document in the Demo application
+:exclamation: The demo will work only after correct setup of the connector
+ ![demo1](images/demo1.png)
+
+ 1. Choose and upload a PDF file
+ 2. Fill email of 1 or 2 signers
+ 3. Create Agreement for 1 or 2 signers
+ 4. Sign as signer 1 or 2
+ 5. A modal dialog with Adobe signing page is opened. Create a signature in the document.
+ ![demo1](images/demo2.png)
+
+ 6. Confirm the signature with **Click to Sign**
+
+ ![demo1](images/demo3.png)
+
+ 7. The signed document can be downloaded
+
+ ![demo1](images/demo4.png)
+
+
+## Setup
 
 Adobe Sign provides 2 options for authentication. (See Setup section)
 
  1. Integration Key
  2. OAuth2
 
-## Demo
 
-YOUR DEMO DESCRIPTION GOES HERE
-
-## Setup
-
-To use the Adobe Sign Connector it needs to be connected with Adobe. An Adobe administration account needs to be created.
-
-### Creating Adobe Sign account (Company/Developer)
-
- 1. Create a **AdobeSign** Company **Account** OR for Developer Account creation use [Create Developer Account, APIs for custom applications | Acrobat Sign](https://www.adobe.com/sign/developer-form.html) an follow the steps:
-	 a. Fill form with personal and business data + continue
-	 ![fill-account-info](images/createAccountFillInfo.png)
-
-	 b. Provide a password + continue
-	 ![fill-password](images/createAccountPassword.png)
-
-	 c. Provide date of birth + continue
-	 ![fill-birth-date](images/createAccountBirthDate.png)
-
-	d. You will receive a verification code. Insert the code. Will automatically continue
-	 ![verification-code](images/createAccountVerificationCode.png)
-
-	e. Developer account is created
-	![account-finished](images/createAccountFinished.png)
+To setup and use the Adobe Sign Connector it needs to be connected with Adobe. An Adobe administration account needs to be created. (See Adobe Sign account creation)
 
 ### Admin Setup Page
 Adobe Sign Connector provides a setup page for easy setup of the connector and setup of the authentization.
