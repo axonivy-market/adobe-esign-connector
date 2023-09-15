@@ -127,6 +127,17 @@
 						</div>
 						<div class="p-field p-grid p-align-baseline">
 							<div class="p-col-12 p-md-6">
+								<p:outputLabel for="accessToken"
+									value="#{adminSetupBean.getVariableName('ACCESS_TOKEN')}" />
+							</div>
+							<div class="p-col-12 p-md-6">
+								<p:inputText id="accessToken" value="#{data.accessToken}"
+									readonly="true" />
+								<p:tooltip for="accessToken" value="#{data.accessToken}" position="top"/>
+							</div>
+						</div>
+						<div class="p-field p-grid p-align-baseline">
+							<div class="p-col-12 p-md-6">
 								<p:outputLabel for="redirectUri"
 									value="#{ivy.cms.co('/Dialogs/com/axonivy/connector/adobe/esign/connector/AdminSetup/RedirectURI')}" />
 							</div>

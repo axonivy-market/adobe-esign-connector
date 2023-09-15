@@ -18,3 +18,5 @@ returnPage String #field
 returnPage PERSISTENT #fieldModifier
 oauthToken String #field
 oauthToken PERSISTENT #fieldModifier
+accessToken String #field
+accessToken PERSISTENT #fieldModifier

@@ -16,23 +16,23 @@ YOUR DEMO DESCRIPTION GOES HERE
 
 ## Setup
 
-To use the Adobe Sign Connector it needs to be connected with Adobe. An Adobe administration account needs to be created. 
+To use the Adobe Sign Connector it needs to be connected with Adobe. An Adobe administration account needs to be created.
 
 ### Creating Adobe Sign account (Company/Developer)
 
  1. Create a **AdobeSign** Company **Account** OR for Developer Account creation use [Create Developer Account, APIs for custom applications | Acrobat Sign](https://www.adobe.com/sign/developer-form.html) an follow the steps:
 	 a. Fill form with personal and business data + continue
 	 ![fill-account-info](images/createAccountFillInfo.png)
-	 
+
 	 b. Provide a password + continue
 	 ![fill-password](images/createAccountPassword.png)
-	 
+
 	 c. Provide date of birth + continue
 	 ![fill-birth-date](images/createAccountBirthDate.png)
 
 	d. You will receive a verification code. Insert the code. Will automatically continue
 	 ![verification-code](images/createAccountVerificationCode.png)
-	
+
 	e. Developer account is created
 	![account-finished](images/createAccountFinished.png)
 
@@ -55,9 +55,9 @@ To be able to open the Admin Setup page the admin user needs to own `ADOBE_ESIGN
 ##### How to get Integration Key
 
  1. Go to your Adobe Sign account page: https://secure.adobesign.com/account/
- 2. Open **Access Tokens** configuration 
+ 2. Open **Access Tokens** configuration
  ![access-tokens](images/integrationKey1.png)
- 3. Create new Integration Key 
+ 3. Create new Integration Key
  ![create-integration-key](images/integrationKey2.png)
  4. Copy the Integration Key to the Admin Setup Page
  ![copy-integration-key](images/integrationKey3.png)
@@ -67,13 +67,13 @@ Adobe API doc references for OAuth
 
  1. https://secure.adobesign.com/public/static/oauthDoc.jsp
  2. https://opensource.adobe.com/acrobat-sign/developer_guide/oauth.html
- 
+
 #### OAuth API Application setup
 An API Application needs to be setup at Adobe Sign admin account before OAuth can be configured in the connector.
  1. Go to your Adobe Sign account page: https://secure.adobesign.com/account/
- 2. Go to **API Applications** configuration 
+ 2. Go to **API Applications** configuration
  ![api-applications](images/oauth1.png)
- 3. Create new API Application. Set the Name, Display Name and Domain 
+ 3. Create new API Application. Set the Name, Display Name and Domain
  ![new-application](images/oauth2.png)
  4. Open the newly created Application and copy ID and Secret to the connector's Admin Setup page
 	 a. Application ID = `adobe-sign-connector.clientId`
@@ -90,21 +90,22 @@ An API Application needs to be setup at Adobe Sign admin account before OAuth ca
 |--|--|--|
 | adobe-sign-connector.baseUri | Base URI for getting the access and refresh access tokens (without the `/token` or `/refresh` part) | `https://api.eu2.adobesign.com/oauth/v2`
 | adobe-sign-connector.authenticationUri| URL for the Authorization request (:exclamation:differs from tokens URL)| `https://secure.eu2.adobesign.com/public/oauth/v2`
-| adobe-sign-connector.clientId| Adobe API Application Client ID| 
-| adobe-sign-connector.clientSecret| Adobe API Application Client Secret | 
+| adobe-sign-connector.clientId| Adobe API Application Client ID|
+| adobe-sign-connector.clientSecret| Adobe API Application Client Secret |
 | adobe-sign-connector.permissions | List of permissions that will be requested for the OAuth token | `user_read:account user_write:account user_login:account agreement_read:account agreement_write:account agreement_send:account widget_read:account widget_write:account library_read:account library_write:account workflow_read:account workflow_write:account`
-| adobe-sign-connector.oauthToken | Just info about the OAuth token. Empty means there is no token initialized. To request a new token use the `Save and Request Token` button | 
+| adobe-sign-connector.oauthToken | Info about the OAuth refresh token. Empty means there is no token initialized. To request a new token use the `Save and Request new Token` button |
+| adobe-sign-connector.accessToken| Info about the OAuth access token. |
 | Redirect URI | This URI just needs to be setup to the API Application at Adobe Sign account page. (see **OAuth API Application setup** section)| `https://localhost:8444/designer/pro/adobe-esign-connector/18A83631DA63DA93/oauthResume.ivp`
 
 
 #### Requesting OAuth token
 :exclamation::exclamation::exclamation: Please configure all the Variables in OAuth section on the Admin Setup page (see previous section) as they are necessary for requesting the token.
 
- 1. Click the `Save and Request Token` button. You will be redirected to Adobe Sign login page if the configuration of the Variables is correct.
+ 1. Click the `Save and Request new Token` button. You will be redirected to Adobe Sign login page if the configuration of the Variables is correct.
 ![save-and-request-token](images/tokenRequest1.png)
 2. Login with your Adobe Sign account
 ![adobe-login](images/tokenRequest2.png)
-3. After successful login you should see all the requested permissions. Click **Allow Access**. 
+3. After successful login you should see all the requested permissions. Click **Allow Access**.
 ![request-permissions](images/tokenRequest3.png)
 4. The token will be retrieved and you should be redirected back to the connector's Admin Setup page and should be able to see the initialized token.
 ![token](images/tokenRequest4.png)

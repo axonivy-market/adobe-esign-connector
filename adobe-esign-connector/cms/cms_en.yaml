@@ -11,5 +11,5 @@ Dialogs:
                 IntegrationKeyInfo: Setting the integrationKey will disable OAuth. If you wanna use OAuth then fill the OAuth section and leave the integrationKey empty.
                 OAuth: OAuth
                 RedirectURI: Redirect URI
-                RequestToken: Save and Request Token
+                RequestToken: Save and Request new Token
                 Title: Adobe Sign Admin Setup

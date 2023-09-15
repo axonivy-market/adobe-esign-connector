@@ -33,7 +33,8 @@ public class OAuth2BearerFilter implements javax.ws.rs.client.ClientRequestFilte
 	private static final String TOKEN_SEPARATOR = ":";
 	public static final String AUTH_SCOPE_PROPERTY = "AUTH.scope";
 
-	public static final AdobeVariable TOKEN_VAR = AdobeVariable.OAUTH_TOKEN;
+	public static final AdobeVariable REFRESH_TOKEN_VAR = AdobeVariable.OAUTH_TOKEN;
+	public static final AdobeVariable ACCESS_TOKEN_VAR = AdobeVariable.ACCESS_TOKEN;
 
 	private String property;
 	private Supplier<String> name = null;
@@ -59,22 +60,38 @@ public class OAuth2BearerFilter implements javax.ws.rs.client.ClientRequestFilte
 
 	protected final String getAccessToken(ClientRequestContext context) {
 		FeatureConfig config = new FeatureConfig(context.getConfiguration(), getSource());
-		VarTokenStore store = VarTokenStore.get(TOKEN_VAR.getVariableName());
-		var token = store.getToken();
-		if (token == null || token.isExpired()) {
-			if (token == null || !token.hasRefreshToken()) {
-				token = getNewAccessToken(context.getClient(), config);
-			} else {
-				token = getRefreshedAccessToken(context.getClient(), config, token.refreshToken());
+		VarTokenStore refreshTokenStore = VarTokenStore.get(REFRESH_TOKEN_VAR.getVariableName());
+		var refreshToken = refreshTokenStore.getToken();
+		
+		VarTokenStore accessTokenStore = VarTokenStore.get(ACCESS_TOKEN_VAR.getVariableName());
+		var accessToken = accessTokenStore.getToken();
+		
+		String resultToken = null;
+		
+		if(accessToken == null || accessToken.isExpired()) {
+			// refresh access token
+			if(refreshToken != null && refreshToken.hasRefreshToken()) {
+				accessToken = getRefreshedAccessToken(context.getClient(), config, refreshToken.refreshToken());
+				accessTokenStore.setToken(accessToken);
+				resultToken = accessToken.accessToken();
 			}
-			store.setToken(token); // keep for following requests
+			else { // get new access token
+				refreshToken = getNewAccessToken(context.getClient(), config);
+				refreshTokenStore.setToken(refreshToken);
+				accessTokenStore.setToken(refreshToken);
+				resultToken = refreshToken.accessToken();
+			}
 		}
-		if (!token.hasAccessToken()) {
-			store.setToken(null);
-			authError().withMessage("Failed to read 'access_token' from " + token).throwError();
+		else { // use existing token
+			resultToken = accessToken.accessToken();
+		}
+		
+		if (accessToken != null && !accessToken.hasAccessToken()) {
+			accessTokenStore.setToken(null);
+			authError().withMessage("Failed to read 'access_token' from " + refreshToken).throwError();
 		}
 
-		return token.accessToken();
+		return resultToken;
 	}
 
 	String createKey(FeatureConfig config) {

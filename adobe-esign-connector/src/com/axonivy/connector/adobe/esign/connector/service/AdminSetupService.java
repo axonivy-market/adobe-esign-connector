@@ -19,7 +19,6 @@ import org.primefaces.PrimeFaces;
 
 import com.axonivy.connector.adobe.esign.connector.AdminSetup.AdminSetupData;
 import com.axonivy.connector.adobe.esign.connector.auth.OAuth2Feature.AccessTokenRequest;
-import com.axonivy.connector.adobe.esign.connector.auth.OAuth2Feature.RefreshTokenRequest;
 import com.axonivy.connector.adobe.esign.connector.auth.oauth.OAuth2UriProperty;
 import com.axonivy.connector.adobe.esign.connector.auth.oauth.Token;
 import com.axonivy.connector.adobe.esign.connector.auth.oauth.VarTokenStore;
@@ -45,6 +44,7 @@ public class AdminSetupService {
 		data.setOauthToken(AdobeVariable.OAUTH_TOKEN.getValue());
 		data.setPermissions(AdobeVariable.PERMISSIONS.getValue());
 		data.setReturnPage(AdobeVariable.RETURN_PAGE.getValue());
+		data.setAccessToken(AdobeVariable.ACCESS_TOKEN.getValue());
 	}
 
 	/**
@@ -60,8 +60,7 @@ public class AdminSetupService {
 		AdobeVariable.INTEGRATION_KEY.updateValue(data.getIntegrationKey());
 		AdobeVariable.PERMISSIONS.updateValue(data.getPermissions());
 		AdobeVariable.RETURN_PAGE.updateValue(data.getReturnPage());
-		// dont updateW oauth token variable
-		AdobeVariable.OAUTH_TOKEN.updateValue(data.getOauthToken());
+		// dont update oauth token variables
 	}
 
 	/**
@@ -100,27 +99,29 @@ public class AdminSetupService {
 		var clientSecret = AdobeVariable.CLIENT_SECRET.getValue();
 		UriBuilder tokenBaseUri = UriBuilder.fromUri(new URI(AdobeVariable.BASE_URI.getValue()));
 
-		VarTokenStore store = VarTokenStore.get(AdobeVariable.OAUTH_TOKEN.getVariableName());
-		Token token = store.getToken();
+		// get token stores for refresh and access tokens
+		VarTokenStore refreshTokenStore = VarTokenStore.get(AdobeVariable.OAUTH_TOKEN.getVariableName());
+		VarTokenStore accessTokenStore = VarTokenStore.get(AdobeVariable.ACCESS_TOKEN.getVariableName());
 
+		//request new token
 		Client client = ClientBuilder.newClient();
-		Response response = null;
-		if (token == null || !token.hasRefreshToken()) {
-			tokenBaseUri.path(OAuth2UriProperty.TOKEN_RELATIVE_PATH);
-			AccessTokenRequest authRequest = new AccessTokenRequest(authCode, clientId, clientSecret,
-					createRedirectUrl());
-			WebTarget target = client.target(tokenBaseUri);
-			response = target.request().post(Entity.form(authRequest.paramsMap()));
-		} else {
-			tokenBaseUri.path(OAuth2UriProperty.REFRESH_RELATIVE_PATH);
-			RefreshTokenRequest authRequest = new RefreshTokenRequest(token.refreshToken(), clientId, clientSecret);
-			WebTarget target = client.target(tokenBaseUri);
-			response = target.request().post(Entity.form(authRequest.paramsMap()));
-		}
+		tokenBaseUri.path(OAuth2UriProperty.TOKEN_RELATIVE_PATH);
+		AccessTokenRequest authRequest = new AccessTokenRequest(authCode, clientId, clientSecret,
+				createRedirectUrl());
+		WebTarget target = client.target(tokenBaseUri);
+		Response response = target.request().post(Entity.form(authRequest.paramsMap()));
+//		else {
+//			tokenBaseUri.path(OAuth2UriProperty.REFRESH_RELATIVE_PATH);
+//			RefreshTokenRequest authRequest = new RefreshTokenRequest(refreshToken.refreshToken(), clientId, clientSecret);
+//			WebTarget target = client.target(tokenBaseUri);
+//			response = target.request().post(Entity.form(authRequest.paramsMap()));
+//		}
 		if (response.getStatusInfo().getFamily() == Family.SUCCESSFUL) {
 			GenericType<Map<String, Object>> map = new GenericType<>(Map.class);
+			// store new token
 			Token newToken = new Token(response.readEntity(map));
-			store.setToken(newToken);
+			refreshTokenStore.setToken(newToken);
+			accessTokenStore.setToken(newToken);
 		} else {
 			Ivy.log().error("failed to get access token: " + response);
 		}
