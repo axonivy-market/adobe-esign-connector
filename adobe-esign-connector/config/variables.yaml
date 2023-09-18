@@ -14,7 +14,7 @@ Variables:
     returnPage: ''
 
     # Integration key from Adobe Sign configuration
-    integrationKey:
+    integrationKey: ''
 
     # Base URI for getting the access and refresh access tokens (without the `/token` or `/refresh` part)
     baseUri:  'https://api.eu2.adobesign.com/oauth/v2'

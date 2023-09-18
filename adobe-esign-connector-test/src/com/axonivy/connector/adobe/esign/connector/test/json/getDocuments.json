@@ -1,0 +1,17 @@
+{
+	"documents": [
+		{
+			"createdDate": [
+				2023,
+				9,
+				18
+			],
+			"id": "3AAABLblqZhDM2f8YEhDF1N6Oz-8ZY5jVZVgpRh2b_69hblablablablabla",
+			"label": null,
+			"mimeType": "application/pdf",
+			"name": "sample.pdf",
+			"numPages": 2
+		}
+	],
+	"supportingDocuments": null
+}
