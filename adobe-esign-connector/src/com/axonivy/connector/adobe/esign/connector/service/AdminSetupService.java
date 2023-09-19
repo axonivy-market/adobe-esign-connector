@@ -110,12 +110,7 @@ public class AdminSetupService {
 				createRedirectUrl());
 		WebTarget target = client.target(tokenBaseUri);
 		Response response = target.request().post(Entity.form(authRequest.paramsMap()));
-//		else {
-//			tokenBaseUri.path(OAuth2UriProperty.REFRESH_RELATIVE_PATH);
-//			RefreshTokenRequest authRequest = new RefreshTokenRequest(refreshToken.refreshToken(), clientId, clientSecret);
-//			WebTarget target = client.target(tokenBaseUri);
-//			response = target.request().post(Entity.form(authRequest.paramsMap()));
-//		}
+
 		if (response.getStatusInfo().getFamily() == Family.SUCCESSFUL) {
 			GenericType<Map<String, Object>> map = new GenericType<>(Map.class);
 			// store new token
