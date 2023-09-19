@@ -4,4 +4,4 @@
 
 The Adobe Sign Connector simplifies the authentication process and enables easy integration and use of Adobe Sign services for electronical signing of documents.
 
-Read our [documentation](adobesign-connector-product/README.md).
+Read our [documentation](adobe-esign-connector-product/README.md).
