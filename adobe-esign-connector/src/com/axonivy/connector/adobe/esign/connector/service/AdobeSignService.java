@@ -197,7 +197,9 @@ public class AdobeSignService {
 		
 		agreement.setEmailOption(createAllDisabledSendOptions());
 		
-		agreement.postSignOption(new AgreementsPostSignOption().redirectUrl(Ivy.var().get("adobe-sign-connector.returnPage")));
+		String baseUrl = getRequestBaseUrl();
+		String fullUrl = baseUrl + Ivy.var().get("adobe-sign-connector.returnPage");
+		agreement.postSignOption(new AgreementsPostSignOption().redirectUrl(fullUrl));
 		
 		return agreement;
 	}

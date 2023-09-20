@@ -1,0 +1,26 @@
+Dialogs:
+  com:
+    axonivy:
+      connector:
+        adobe:
+          esign:
+            connector:
+              demo:
+                Demo:
+                  AdobeSignDemosA: Adobe Sign Demos. Upload PDF file, enter one or multiple signers, create an agreement and sign the document as selected signer
+                  Agreement: Agreement
+                  AgreementID: Agreement ID
+                  AgreementID1: Agreement ID
+                  CreateAgreement: Create Agreement for 1 signer
+                  CreateAgreement1: Create Agreement for 2 signers
+                  Documents: Documents
+                  LoadExisting: Load existing Agreement
+                  LoadExistingToo: Enter Agreement ID and load existing Agreement in case it's already created on Adobe side
+                  PDFFile: PDF file
+                  PDFFileToSign: PDF File to sign
+                  SignAsSigner1: Sign as Signer 1
+                  SignAsSigner2: Sign as Signer 2
+                  Signer1Email: Signer 1 email
+                  Signer2Email: Signer 2 email
+                  Signers: Signers
+                  Signing: Signing

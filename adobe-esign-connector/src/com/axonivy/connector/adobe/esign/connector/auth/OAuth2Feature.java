@@ -55,7 +55,7 @@ public class OAuth2Feature implements Feature {
     			ctxt -> requestToken(ctxt, adobeSignUri),
     			adobeSignUri);
     	context.register(oauth2, Priorities.AUTHORIZATION);
-    }
+    } 
     else {
 	    context.register(BearerTokenAuthorizationFilter.class, Priorities.AUTHORIZATION - 10);
     }
