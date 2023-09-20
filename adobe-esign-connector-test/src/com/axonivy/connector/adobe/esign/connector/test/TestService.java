@@ -18,7 +18,7 @@ public class TestService {
 		if (cov == null) {
 			return null;
 		}
-		java.io.File sampleFile = new File("/samplePdf.pdf", true).getJavaFile();
+		java.io.File sampleFile = new File("samplePdf.pdf", true).getJavaFile();
 		FileOutputStream fos = new FileOutputStream(sampleFile);
 		IOUtils.copy(cov.read().inputStream(), fos);
 		return sampleFile;
