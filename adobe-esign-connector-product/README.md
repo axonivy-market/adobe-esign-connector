@@ -9,7 +9,8 @@ An Adobe Sign account needs to be created to setup and use the connector.
 
 ## Adobe Sign account creation
 
-  1. Create a **AdobeSign** Company **Account** OR for Developer Account creation use [Create Developer Account, APIs for custom applications | Acrobat Sign](https://www.adobe.com/sign/developer-form.html) an follow the steps:
+  1. Create a **AdobeSign** Company **Account** OR for Developer Account creation use [Create Developer Account, APIs for custom applications | Acrobat Sign](https://www.adobe.com/sign/developer-form.html) and follow the steps:
+
  	 a. Fill form with personal and business data + continue
  	 ![fill-account-info](images/createAccountFillInfo.png)
 
@@ -19,11 +20,11 @@ An Adobe Sign account needs to be created to setup and use the connector.
  	 c. Provide date of birth + continue
  	 ![fill-birth-date](images/createAccountBirthDate.png)
 
- 	d. You will receive a verification code. Insert the code. Will automatically continue
+ 	 d. You will receive a verification code. Insert the code. Will automatically continue
  	 ![verification-code](images/createAccountVerificationCode.png)
 
- 	e. Developer account is created
- 	![account-finished](images/createAccountFinished.png)
+ 	 e. Developer account is created
+ 	 ![account-finished](images/createAccountFinished.png)
 
 ## Demo
 
