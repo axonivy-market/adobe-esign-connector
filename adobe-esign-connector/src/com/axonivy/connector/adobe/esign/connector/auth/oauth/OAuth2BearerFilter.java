@@ -153,7 +153,6 @@ public class OAuth2BearerFilter implements javax.ws.rs.client.ClientRequestFilte
 		return authCode;
 	}
 
-	@SuppressWarnings("restriction")
 	private static BpmPublicErrorBuilder authError() {
 		return BpmError.create(RedirectToIdentityProvider.OAUTH2_ERROR_CODE);
 	}

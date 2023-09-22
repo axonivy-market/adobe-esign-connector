@@ -55,6 +55,7 @@ public class WebHookService {
 		Ivy.log().info(node);
 	}
 	
+	@SuppressWarnings("unused")
 	private boolean verifyClientId(String clientId) {
 		return Optional.ofNullable(Ivy.var().get(CLIENT_ID_VAR)).map(s -> s.compareTo(clientId) == 0).orElse(false);
 	}
