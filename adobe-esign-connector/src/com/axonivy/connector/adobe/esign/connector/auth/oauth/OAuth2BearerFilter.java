@@ -1,3 +1,4 @@
+
 package com.axonivy.connector.adobe.esign.connector.auth.oauth;
 
 import java.io.IOException;
@@ -19,9 +20,7 @@ import ch.ivyteam.ivy.bpm.error.BpmPublicErrorBuilder;
 import ch.ivyteam.ivy.request.IRequest;
 import ch.ivyteam.ivy.rest.client.FeatureConfig;
 import ch.ivyteam.ivy.rest.client.RestClientFactoryConstants;
-import ch.ivyteam.ivy.rest.client.internal.oauth2.RedirectToIdentityProvider;
 
-@SuppressWarnings("restriction")
 public class OAuth2BearerFilter implements javax.ws.rs.client.ClientRequestFilter {
 	private static final String AUTHORIZATION = "Authorization";
 	private static final String BEARER = "Bearer ";
@@ -35,6 +34,8 @@ public class OAuth2BearerFilter implements javax.ws.rs.client.ClientRequestFilte
 
 	public static final AdobeVariable REFRESH_TOKEN_VAR = AdobeVariable.OAUTH_TOKEN;
 	public static final AdobeVariable ACCESS_TOKEN_VAR = AdobeVariable.ACCESS_TOKEN;
+	
+	private static final String OAUTH2_ERROR_CODE = "ivy:error:rest:client:oauth2";
 
 	private String property;
 	private Supplier<String> name = null;
@@ -154,6 +155,6 @@ public class OAuth2BearerFilter implements javax.ws.rs.client.ClientRequestFilte
 	}
 
 	private static BpmPublicErrorBuilder authError() {
-		return BpmError.create(RedirectToIdentityProvider.OAUTH2_ERROR_CODE);
+		return BpmError.create(OAUTH2_ERROR_CODE);
 	}
 }

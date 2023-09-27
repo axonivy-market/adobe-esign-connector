@@ -1,7 +1,5 @@
 package com.axonivy.connector.adobe.esign.connector.rest;
 
-import java.util.Optional;
-
 import javax.annotation.security.PermitAll;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -33,7 +31,6 @@ import ch.ivyteam.ivy.environment.Ivy;
 public class WebHookService {
 
 	private static final String CLIENT_ID_HEADER = "X-ADOBESIGN-CLIENTID";
-	private static final String CLIENT_ID_VAR = "ivy.var.adobe-sign-connector.clientId";
 
 	@GET
 	@Produces("application/json")
@@ -53,11 +50,6 @@ public class WebHookService {
 	@Consumes("application/json")
 	public void notification(JsonNode node) {
 		Ivy.log().info(node);
-	}
-	
-	@SuppressWarnings("unused")
-	private boolean verifyClientId(String clientId) {
-		return Optional.ofNullable(Ivy.var().get(CLIENT_ID_VAR)).map(s -> s.compareTo(clientId) == 0).orElse(false);
 	}
 	
 	private record ClientIdResponse(String xAdobeSignClientId) {};
