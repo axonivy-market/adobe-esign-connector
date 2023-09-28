@@ -83,7 +83,6 @@ public class AdminSetupService {
 				.queryParam("client_id", clientId)
 				.queryParam("scope", scope)
 				.build();
-		Ivy.log().debug("created oauth URI: " + uri);
 		PrimeFaces.current().executeScript("window.open('" + uri.toString() + "', '_top')");
 	}
 

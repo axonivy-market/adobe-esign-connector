@@ -53,9 +53,9 @@
       "type" : "Script",
       "name" : "log",
       "config" : {
+        "security" : "system",
         "output" : {
           "code" : [
-            "ivy.log.info(\"uploaded document with id {0}\", in.fileId);",
             "if(in.#error is initialized) {",
             "  ivy.log.error(in.error);",
             "}"
@@ -139,9 +139,9 @@
       "type" : "Script",
       "name" : "log",
       "config" : {
+        "security" : "system",
         "output" : {
           "code" : [
-            "ivy.log.info(\"create agreement with id {0}\", in.agreementId);",
             "if(in.#error is initialized) {",
             "  ivy.log.error(in.error);",
             "}"

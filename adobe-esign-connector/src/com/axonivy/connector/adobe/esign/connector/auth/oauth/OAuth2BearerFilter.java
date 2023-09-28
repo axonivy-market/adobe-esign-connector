@@ -20,7 +20,9 @@ import ch.ivyteam.ivy.bpm.error.BpmPublicErrorBuilder;
 import ch.ivyteam.ivy.request.IRequest;
 import ch.ivyteam.ivy.rest.client.FeatureConfig;
 import ch.ivyteam.ivy.rest.client.RestClientFactoryConstants;
+import ch.ivyteam.ivy.rest.client.internal.oauth2.RedirectToIdentityProvider;
 
+@SuppressWarnings("restriction")
 public class OAuth2BearerFilter implements javax.ws.rs.client.ClientRequestFilter {
 	private static final String AUTHORIZATION = "Authorization";
 	private static final String BEARER = "Bearer ";
@@ -34,8 +36,6 @@ public class OAuth2BearerFilter implements javax.ws.rs.client.ClientRequestFilte
 
 	public static final AdobeVariable REFRESH_TOKEN_VAR = AdobeVariable.OAUTH_TOKEN;
 	public static final AdobeVariable ACCESS_TOKEN_VAR = AdobeVariable.ACCESS_TOKEN;
-	
-	private static final String OAUTH2_ERROR_CODE = "ivy:error:rest:client:oauth2";
 
 	private String property;
 	private Supplier<String> name = null;
@@ -63,12 +63,12 @@ public class OAuth2BearerFilter implements javax.ws.rs.client.ClientRequestFilte
 		FeatureConfig config = new FeatureConfig(context.getConfiguration(), getSource());
 		VarTokenStore refreshTokenStore = VarTokenStore.get(REFRESH_TOKEN_VAR.getVariableName());
 		var refreshToken = refreshTokenStore.getToken();
-		
+
 		VarTokenStore accessTokenStore = VarTokenStore.get(ACCESS_TOKEN_VAR.getVariableName());
 		var accessToken = accessTokenStore.getToken();
-		
+
 		String resultToken = null;
-		
+
 		if(accessToken == null || accessToken.isExpired()) {
 			// refresh access token
 			if(refreshToken != null && refreshToken.hasRefreshToken()) {
@@ -86,7 +86,7 @@ public class OAuth2BearerFilter implements javax.ws.rs.client.ClientRequestFilte
 		else { // use existing token
 			resultToken = accessToken.accessToken();
 		}
-		
+
 		if (accessToken != null && !accessToken.hasAccessToken()) {
 			accessTokenStore.setToken(null);
 			authError().withMessage("Failed to read 'access_token' from " + refreshToken).throwError();
@@ -128,7 +128,7 @@ public class OAuth2BearerFilter implements javax.ws.rs.client.ClientRequestFilte
 
 	private Token getAccessToken(Client client, FeatureConfig config, String refreshToken) {
 		GenericType<Map<String, Object>> map = new GenericType<>(Map.class);
-		
+
 		// use refresh uri for refresh token
 		var tokenUri = StringUtils.isNotBlank(refreshToken) ? uriFactory.getRefreshUri() : uriFactory.getTokenUri();
 		String authCode = getAuthCode();
@@ -155,6 +155,6 @@ public class OAuth2BearerFilter implements javax.ws.rs.client.ClientRequestFilte
 	}
 
 	private static BpmPublicErrorBuilder authError() {
-		return BpmError.create(OAUTH2_ERROR_CODE);
+		return BpmError.create(RedirectToIdentityProvider.OAUTH2_ERROR_CODE);
 	}
 }

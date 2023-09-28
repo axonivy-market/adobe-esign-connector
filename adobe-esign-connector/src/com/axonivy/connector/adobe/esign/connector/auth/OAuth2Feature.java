@@ -23,7 +23,6 @@ import com.axonivy.connector.adobe.esign.connector.auth.oauth.OAuth2UriProperty;
 import com.axonivy.connector.adobe.esign.connector.enums.AdobeVariable;
 
 import ch.ivyteam.ivy.bpm.error.BpmPublicErrorBuilder;
-import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.rest.client.FeatureConfig;
 import ch.ivyteam.ivy.rest.client.oauth2.OAuth2RedirectErrorBuilder;
 import ch.ivyteam.ivy.rest.client.oauth2.uri.OAuth2CallbackUriBuilder;
@@ -195,7 +194,6 @@ public class OAuth2Feature implements Feature {
             .queryParam("client_id", config.readMandatory(Property.CLIENT_ID))
             .queryParam("scope", getScope(config))
             .build();
-    Ivy.log().debug("created oauth URI: " + uri);
     return OAuth2RedirectErrorBuilder
             .create(uri)
             .withMessage("Missing permission from user to act in his name.");

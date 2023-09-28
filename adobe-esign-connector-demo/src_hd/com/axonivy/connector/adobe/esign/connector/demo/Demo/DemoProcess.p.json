@@ -146,7 +146,6 @@
           "code" : [
             "import api.rest.v6.client.SigningUrlResponseSigningUrls;",
             "import api.rest.v6.client.SigningUrlResponseSigningUrlSetInfos;",
-            "ivy.log.info(result.signingURIs);",
             "",
             "for(SigningUrlResponseSigningUrlSetInfos signingInfos : result.signingURIs) {",
             "  for(SigningUrlResponseSigningUrls signingUrls : signingInfos.getSigningUrls()) {",
@@ -363,7 +362,6 @@
           "code" : [
             "import api.rest.v6.client.SigningUrlResponseSigningUrls;",
             "import api.rest.v6.client.SigningUrlResponseSigningUrlSetInfos;",
-            "ivy.log.info(result.signingURIs);",
             "",
             "for(SigningUrlResponseSigningUrlSetInfos signingInfos : result.signingURIs) {",
             "  for(SigningUrlResponseSigningUrls signingUrls : signingInfos.getSigningUrls()) {",
