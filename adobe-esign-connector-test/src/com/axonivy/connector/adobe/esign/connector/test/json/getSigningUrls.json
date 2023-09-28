@@ -1,0 +1,13 @@
+{
+	"signingUrlSetInfos": [
+		{
+			"signingUrlSetName": null,
+			"signingUrls": [
+				{
+					"email": "stma@mailinator.com",
+					"esignUrl": "https://secure.eu2.adobesign.com/public/apiesign?pid=CBFCIBAA3AAABLblqZhBfFw-mWHXrt1tSN_AfnQQld3Ea9pq61iY57nLp7Duyp5I8XoIyLkT1TcjoW7lshFZXF4zoa5UPIOBRKUPhP8YuenqrWRNjVAXoTO8P7eMr3qIr8-hOhCOIfKUXiB0UOmQ%2A&client_id=CBJCHblablablablabla"
+				}
+			]
+		}
+	]
+}

@@ -6,8 +6,14 @@
 # '<project>/Config/_<environment>/variables.yaml
 #
 Variables:
-#  myVariable: value
   adobe-sign-connector:
-    host: api.eu2.echosign.com
-    integrationKey: 
-    returnPage: http://localhost:8081/designer/page/adobe-esign-connector$1/signatureReturn.jsp
+    host: api.eu2.adobesign.com
+    returnPage: /designer/page/adobe-esign-connector$1/signatureReturn.jsp
+    baseUri:  https://api.eu2.adobesign.com/oauth/v2
+    authenticationUri: https://secure.eu2.adobesign.com/public/oauth/v2
+    clientId: ''
+    clientSecret: ''
+    permissions: user_read:account user_write:account user_login:account agreement_read:account agreement_write:account agreement_send:account widget_read:account widget_write:account library_read:account library_write:account workflow_read:account workflow_write:account
+    oauthToken: default-value
+    accessToken: default-value
+    integrationKey: ''

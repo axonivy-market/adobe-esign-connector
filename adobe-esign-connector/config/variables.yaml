@@ -1,8 +1,39 @@
 # == Variables ==
-# 
+#
 # You can define here your project Variables.
-# If you want to define/override a Variable for a specific Environment, 
-# add an additional ‘variables.yaml’ file in a subdirectory in the ‘Config’ folder: 
+# If you want to define/override a Variable for a specific Environment,
+# add an additional ‘variables.yaml’ file in a subdirectory in the ‘Config’ folder:
 # '<project>/Config/_<environment>/variables.yaml
 #
 Variables:
+  adobe-sign-connector:
+    # Hostname of Adobe Sign server
+    host: ''
+
+    # Relative part of URL that is called after singing was finished
+    returnPage: ''
+
+    # Integration key from Adobe Sign configuration
+    integrationKey: ''
+
+    # Base URI for getting the access and refresh access tokens (without the `/token` or `/refresh` part)
+    baseUri:  'https://api.eu2.adobesign.com/oauth/v2'
+
+    # URL for the Authorization request (differs from tokens URL)
+    authenticationUri: 'https://secure.eu2.adobesign.com/public/oauth/v2'
+
+    # Adobe API Application Client ID
+    clientId: ''
+
+    # Adobe API Application Client Secret
+    # [password]
+    clientSecret: ''
+
+    # List of permissions that will be requested for the OAuth token
+    permissions: user_read:account user_write:account user_login:account agreement_read:account agreement_write:account agreement_send:account
+
+    # DO NOT MODIFY DIRECTLY, USE ADMIN SETUP PAGE. Info about the OAuth refresh token. Empty means there is no token initialized. To request a new token use the `Save and Request new Token` button
+    oauthToken: ''
+
+    # DO NOT MODIFY DIRECTLY, USE ADMIN SETUP PAGE. Info about the OAuth access token.
+    accessToken: ''

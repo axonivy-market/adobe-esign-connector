@@ -23,10 +23,21 @@ RestClients:
     Url: https://{host}/api/rest/v6
     Features:
     - ch.ivyteam.ivy.rest.client.mapper.JsonFeature
+    - com.axonivy.connector.adobe.esign.connector.auth.OAuth2Feature
+    Properties:
+      AUTH.scope: ${ivy.var.adobe-sign-connector.permissions}
+      AUTH.baseUri: ${ivy.var.adobe-sign-connector.baseUri}
+      JSON.Serialization.PROPERTY_INCLUSION: NON_NULL
+      AUTH.clientId: ${ivy.var.adobe-sign-connector.clientId}
+      AUTH.clientSecret: ${ivy.var.adobe-sign-connector.clientSecret}
+      AUTH.useAppPermissions: ${ivy.var.adobe-sign-connector.useAppPermissions}
+      AUTH.useUserPassFlow: ${ivy.var.adobe-sign-connector.useUserPassFlow.enabled}
+      PATH.host: ${ivy.var.adobe-sign-connector.host}
+      AUTH.integrationKey: ${ivy.var.adobe-sign-connector.integrationKey}
     OpenAPI:
       SpecUrl: file:///C:/Users/jpl/Downloads/json/REST-SDK-V6-master/json/baseUrisV3.json
       Namespace: api.rest.v6.client
-  Agreements (secure.na1.adobesign.com):
+  Agreements:
     UUID: 8e96fab1-4701-47cb-ae35-d821bb12305b
     Url: https://{host}/api/rest/v6
     Features:
@@ -36,35 +47,31 @@ RestClients:
       AUTH.scope: ${ivy.var.adobe-sign-connector.permissions}
       AUTH.baseUri: ${ivy.var.adobe-sign-connector.baseUri}
       JSON.Serialization.PROPERTY_INCLUSION: NON_NULL
-      AUTH.appId: ${ivy.var.adobe-sign-connector.appId}
-      AUTH.secretKey: ${ivy.var.adobe-sign-connector.secretKey}
+      AUTH.clientId: ${ivy.var.adobe-sign-connector.clientId}
+      AUTH.clientSecret: ${ivy.var.adobe-sign-connector.clientSecret}
       AUTH.useAppPermissions: ${ivy.var.adobe-sign-connector.useAppPermissions}
       AUTH.useUserPassFlow: ${ivy.var.adobe-sign-connector.useUserPassFlow.enabled}
-      AUTH.user: ${ivy.var.adobe-sign-connector.useUserPassFlow.user}
-      AUTH.password: ${ivy.var.adobe-sign-connector.useUserPassFlow.pass}
       PATH.host: ${ivy.var.adobe-sign-connector.host}
       AUTH.integrationKey: ${ivy.var.adobe-sign-connector.integrationKey}
     OpenAPI:
       SpecUrl: file:///C:/Users/jpl/OneDrive%20-%20Docuware%20GmbH/data/Projekte/Ricoh/HR%20Transformation/Adobe%20Sign/agreementsV2.json
       Namespace: api.rest.v6.client
       ResolveFully: true
-  TransientDocuments (secure.eu2.echosign.com):
+  TransientDocuments:
     UUID: 6a243983-5f6d-4278-89ec-aab09fea161c
     Url: https://{host}/api/rest/v6
     Features:
-    - ch.ivyteam.ivy.rest.client.mapper.JsonFeature
     - org.glassfish.jersey.media.multipart.MultiPartFeature
     - com.axonivy.connector.adobe.esign.connector.auth.OAuth2Feature
+    - ch.ivyteam.ivy.rest.client.mapper.JsonFeature
     Properties:
       AUTH.scope: ${ivy.var.adobe-sign-connector.permissions}
       AUTH.baseUri: ${ivy.var.adobe-sign-connector.baseUri}
       JSON.Serialization.PROPERTY_INCLUSION: NON_NULL
-      AUTH.appId: ${ivy.var.adobe-sign-connector.appId}
-      AUTH.secretKey: ${ivy.var.adobe-sign-connector.secretKey}
+      AUTH.clientId: ${ivy.var.adobe-sign-connector.clientId}
+      AUTH.clientSecret: ${ivy.var.adobe-sign-connector.clientSecret}
       AUTH.useAppPermissions: ${ivy.var.adobe-sign-connector.useAppPermissions}
       AUTH.useUserPassFlow: ${ivy.var.adobe-sign-connector.useUserPassFlow.enabled}
-      AUTH.user: ${ivy.var.adobe-sign-connector.useUserPassFlow.user}
-      AUTH.password: ${ivy.var.adobe-sign-connector.useUserPassFlow.pass}
       PATH.host: ${ivy.var.adobe-sign-connector.host}
       AUTH.integrationKey: ${ivy.var.adobe-sign-connector.integrationKey}
     OpenAPI:
