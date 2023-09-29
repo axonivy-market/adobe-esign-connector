@@ -1,0 +1,410 @@
+{
+  "format" : "10.0.0",
+  "id" : "1886B1A625EA901A",
+  "kind" : "HTML_DIALOG",
+  "config" : {
+    "data" : "com.axonivy.connector.adobe.esign.connector.demo.Demo.DemoData"
+  },
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "HtmlDialogStart",
+      "name" : "start()",
+      "config" : {
+        "callSignature" : "start",
+        "guid" : "1886B1A62614A9F5"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    }, {
+      "id" : "f1",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 224, "y" : 64 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "HtmlDialogEventStart",
+      "name" : "close",
+      "config" : {
+        "guid" : "1886B1A626EC83BF"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 160 }
+      },
+      "connect" : { "id" : "f5", "to" : "f4" }
+    }, {
+      "id" : "f4",
+      "type" : "HtmlDialogExit",
+      "visual" : {
+        "at" : { "x" : 224, "y" : 160 }
+      }
+    }, {
+      "id" : "f6",
+      "type" : "HtmlDialogEventStart",
+      "name" : "demo1Signer",
+      "config" : {
+        "guid" : "1886B1CCAFDA9488"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 248 }
+      },
+      "connect" : { "id" : "f30", "to" : "f11" }
+    }, {
+      "id" : "f7",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 744, "y" : 248 }
+      }
+    }, {
+      "id" : "f11",
+      "type" : "SubProcessCall",
+      "name" : "upload document",
+      "config" : {
+        "processCall" : "connector/TransientDocuments:uploadDocument(java.io.File)",
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.documentId" : "result.id"
+          }
+        },
+        "call" : {
+          "params" : [
+            { "name" : "file", "type" : "java.io.File" }
+          ],
+          "map" : {
+            "param.file" : "in.file.getJavaFile()"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 224, "y" : 248 }
+      },
+      "connect" : { "id" : "f14", "to" : "f13" }
+    }, {
+      "id" : "f13",
+      "type" : "SubProcessCall",
+      "name" : "create agreement",
+      "config" : {
+        "processCall" : "connector/Agreements:createAgreement(api.rest.v6.client.AgreementCreationInfo)",
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.agreementId" : "result.agreementInfo.id"
+          }
+        },
+        "call" : {
+          "params" : [
+            { "name" : "agreement", "type" : "api.rest.v6.client.AgreementCreationInfo" }
+          ],
+          "map" : {
+            "param.agreement" : "com.axonivy.connector.adobe.esign.connector.service.AdobeSignService.getInstance().buildSimpleAgreement(\"1SignerDemo\", in.documentId, in.signer1)",
+            "param.agreement.senderSigns" : "api.rest.v6.client.AgreementCreationInfo.SenderSignsEnum.NEVER",
+            "param.agreement.signatureType" : "api.rest.v6.client.AgreementCreationInfo.SignatureTypeEnum.ESIGN"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 392, "y" : 248 }
+      },
+      "connect" : { "id" : "f39", "to" : "f38" }
+    }, {
+      "id" : "f15",
+      "type" : "HtmlDialogEventStart",
+      "name" : "sign1",
+      "config" : {
+        "guid" : "1886B532042E8984"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 504 }
+      },
+      "connect" : { "id" : "f19", "to" : "f18" }
+    }, {
+      "id" : "f16",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 352, "y" : 504 }
+      }
+    }, {
+      "id" : "f18",
+      "type" : "SubProcessCall",
+      "name" : "get signing urls",
+      "config" : {
+        "processCall" : "connector/Agreements:getSigningURLs(String,String)",
+        "call" : {
+          "params" : [
+            { "name" : "agreementId", "type" : "String" },
+            { "name" : "frameParent", "type" : "String" }
+          ],
+          "map" : {
+            "param.agreementId" : "in.agreementId",
+            "param.frameParent" : "ivy.html.applicationHomeRef()"
+          }
+        },
+        "output" : {
+          "code" : [
+            "import api.rest.v6.client.SigningUrlResponseSigningUrls;",
+            "import api.rest.v6.client.SigningUrlResponseSigningUrlSetInfos;",
+            "",
+            "for(SigningUrlResponseSigningUrlSetInfos signingInfos : result.signingURIs) {",
+            "  for(SigningUrlResponseSigningUrls signingUrls : signingInfos.getSigningUrls()) {",
+            "    if(signingUrls.email.equals(in.signer1)) {",
+            "      in.signingURI = signingUrls.esignUrl;",
+            "    }",
+            "  }",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 224, "y" : 504 }
+      },
+      "connect" : { "id" : "f17", "to" : "f16" }
+    }, {
+      "id" : "f20",
+      "type" : "HtmlDialogEventStart",
+      "name" : "demo2Signer",
+      "config" : {
+        "guid" : "18870B56110A5978"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 344 }
+      },
+      "connect" : { "id" : "f9", "to" : "f23" }
+    }, {
+      "id" : "f23",
+      "type" : "SubProcessCall",
+      "name" : "upload document",
+      "config" : {
+        "processCall" : "connector/TransientDocuments:uploadDocument(java.io.File)",
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.documentId" : "result.id"
+          }
+        },
+        "call" : {
+          "params" : [
+            { "name" : "file", "type" : "java.io.File" }
+          ],
+          "map" : {
+            "param.file" : "in.file.getJavaFile()"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 224, "y" : 344 }
+      },
+      "connect" : { "id" : "f48", "to" : "f47" }
+    }, {
+      "id" : "f38",
+      "type" : "SubProcessCall",
+      "name" : "get documents",
+      "config" : {
+        "processCall" : "connector/Agreements:getDocuments(String)",
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.documents" : "result.documents"
+          }
+        },
+        "call" : {
+          "params" : [
+            { "name" : "agreementId", "type" : "String" }
+          ],
+          "map" : {
+            "param.agreementId" : "in.agreementId"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 568, "y" : 248 }
+      },
+      "connect" : { "id" : "f10", "to" : "f7" }
+    }, {
+      "id" : "f40",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "downloadDocument(String,String)",
+      "config" : {
+        "callSignature" : "downloadDocument",
+        "result" : {
+          "params" : [
+            { "name" : "file", "type" : "org.primefaces.model.StreamedContent" }
+          ],
+          "map" : {
+            "result.file" : "in.documentContent"
+          }
+        },
+        "input" : {
+          "params" : [
+            { "name" : "documentId", "type" : "String" },
+            { "name" : "filename", "type" : "String" }
+          ],
+          "map" : {
+            "out.documentId" : "param.documentId",
+            "out.filename" : "param.filename"
+          }
+        },
+        "guid" : "188B93A5550422ED"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 592 }
+      },
+      "connect" : { "id" : "f44", "to" : "f43" }
+    }, {
+      "id" : "f41",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 352, "y" : 592 }
+      }
+    }, {
+      "id" : "f43",
+      "type" : "SubProcessCall",
+      "name" : "download document",
+      "config" : {
+        "processCall" : "connector/Agreements:dowloadDocument(String,String,String,Boolean)",
+        "call" : {
+          "params" : [
+            { "name" : "agreementId", "type" : "String" },
+            { "name" : "documentId", "type" : "String" },
+            { "name" : "filename", "type" : "String" },
+            { "name" : "asFile", "type" : "Boolean" }
+          ],
+          "map" : {
+            "param.agreementId" : "in.agreementId",
+            "param.documentId" : "in.documentId",
+            "param.filename" : "in.filename",
+            "param.asFile" : "true"
+          }
+        },
+        "output" : {
+          "code" : [
+            "import com.axonivy.connector.adobe.esign.connector.ui.util.FileUtils;",
+            "in.documentContent = FileUtils.toStreamedContent(in.filename, result.download);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 224, "y" : 592 }
+      },
+      "connect" : { "id" : "f42", "to" : "f41" }
+    }, {
+      "id" : "f45",
+      "type" : "HtmlDialogEventStart",
+      "name" : "updateDocuments",
+      "config" : {
+        "guid" : "188B94B298216FB1"
+      },
+      "visual" : {
+        "at" : { "x" : 568, "y" : 144 }
+      },
+      "connect" : { "id" : "f46", "to" : "f38" }
+    }, {
+      "id" : "f47",
+      "type" : "SubProcessCall",
+      "name" : "create agreement",
+      "config" : {
+        "processCall" : "connector/Agreements:createAgreement(api.rest.v6.client.AgreementCreationInfo)",
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.agreementId" : "result.agreementInfo.id"
+          }
+        },
+        "call" : {
+          "params" : [
+            { "name" : "agreement", "type" : "api.rest.v6.client.AgreementCreationInfo" }
+          ],
+          "map" : {
+            "param.agreement" : "com.axonivy.connector.adobe.esign.connector.service.AdobeSignService.getInstance().buildSimpleAgreementFor2SignerGroups(\"2SignerDemo\", in.documentId, [in.signer1], [in.signer2])"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 392, "y" : 344 }
+      },
+      "connect" : { "id" : "f33", "to" : "f38" }
+    }, {
+      "id" : "f21",
+      "type" : "HtmlDialogEventStart",
+      "name" : "sign2",
+      "config" : {
+        "guid" : "188F43D709132850"
+      },
+      "visual" : {
+        "at" : { "x" : 424, "y" : 504 }
+      },
+      "connect" : { "id" : "f26", "to" : "f25" }
+    }, {
+      "id" : "f24",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 680, "y" : 504 }
+      }
+    }, {
+      "id" : "f25",
+      "type" : "SubProcessCall",
+      "name" : "get signing urls",
+      "config" : {
+        "processCall" : "connector/Agreements:getSigningURLs(String,String)",
+        "call" : {
+          "params" : [
+            { "name" : "agreementId", "type" : "String" },
+            { "name" : "frameParent", "type" : "String" }
+          ],
+          "map" : {
+            "param.agreementId" : "in.agreementId",
+            "param.frameParent" : "ivy.html.applicationHomeRef()"
+          }
+        },
+        "output" : {
+          "code" : [
+            "import api.rest.v6.client.SigningUrlResponseSigningUrls;",
+            "import api.rest.v6.client.SigningUrlResponseSigningUrlSetInfos;",
+            "",
+            "for(SigningUrlResponseSigningUrlSetInfos signingInfos : result.signingURIs) {",
+            "  for(SigningUrlResponseSigningUrls signingUrls : signingInfos.getSigningUrls()) {",
+            "    if(signingUrls.email.equals(in.signer2)) {",
+            "      in.signingURI = signingUrls.esignUrl;",
+            "    }",
+            "  }",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 552, "y" : 504 }
+      },
+      "connect" : { "id" : "f29", "to" : "f24" }
+    }, {
+      "id" : "f28",
+      "type" : "HtmlDialogEventStart",
+      "name" : "fileUpload",
+      "config" : {
+        "guid" : "188F7C5FB0E4D152"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 672 }
+      },
+      "connect" : { "id" : "f35", "to" : "f34" }
+    }, {
+      "id" : "f31",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 352, "y" : 672 }
+      }
+    }, {
+      "id" : "f34",
+      "type" : "Script",
+      "config" : {
+        "output" : {
+          "code" : "ivy.log.info(in.file.getAbsolutePath());"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 224, "y" : 672 }
+      },
+      "connect" : { "id" : "f32", "to" : "f31" }
+    } ]
+}

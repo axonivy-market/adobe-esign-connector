@@ -1,0 +1,6 @@
+TransientDocumentsData #class
+com.axonivy.connector.adobe.esign.connector #namespace
+file java.io.File #field
+id String #field
+error ch.ivyteam.ivy.bpm.error.BpmError #field
+upload com.axonivy.connector.adobe.esign.connector.rest.UploadWrapper #field

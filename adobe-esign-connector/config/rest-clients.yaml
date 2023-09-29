@@ -1,0 +1,80 @@
+RestClients:
+  Users:
+    UUID: 83e80d77-749b-4f53-aaf5-a796f2dab100
+    Url: https://{host}/api/rest/v6
+    Features:
+    - ch.ivyteam.ivy.rest.client.mapper.JsonFeature
+    - com.axonivy.connector.adobe.esign.connector.auth.OAuth2Feature
+    Properties:
+      AUTH.scope: ${ivy.var.adobe-sign-connector.permissions}
+      AUTH.baseUri: ${ivy.var.adobe-sign-connector.baseUri}
+      JSON.Serialization.PROPERTY_INCLUSION: NON_NULL
+      AUTH.clientId: ${ivy.var.adobe-sign-connector.clientId}
+      AUTH.clientSecret: ${ivy.var.adobe-sign-connector.clientSecret}
+      PATH.host: ${ivy.var.adobe-sign-connector.host}
+      AUTH.code: ${ivy.var.adobe-sign-connector.code}
+      AUTH.integrationKey: ${ivy.var.adobe-sign-connector.integrationKey}
+    OpenAPI:
+      SpecUrl: file:///C:/Users/jpl/Downloads/json/REST-SDK-V6-master/json/usersV3.json
+      Namespace: api.rest.v6.client
+      ResolveFully: true
+  BaseUris:
+    UUID: 9774590a-7adb-4910-8a53-22b68e50d9ed
+    Url: https://{host}/api/rest/v6
+    Features:
+    - ch.ivyteam.ivy.rest.client.mapper.JsonFeature
+    - com.axonivy.connector.adobe.esign.connector.auth.OAuth2Feature
+    Properties:
+      AUTH.scope: ${ivy.var.adobe-sign-connector.permissions}
+      AUTH.baseUri: ${ivy.var.adobe-sign-connector.baseUri}
+      JSON.Serialization.PROPERTY_INCLUSION: NON_NULL
+      AUTH.clientId: ${ivy.var.adobe-sign-connector.clientId}
+      AUTH.clientSecret: ${ivy.var.adobe-sign-connector.clientSecret}
+      AUTH.useAppPermissions: ${ivy.var.adobe-sign-connector.useAppPermissions}
+      AUTH.useUserPassFlow: ${ivy.var.adobe-sign-connector.useUserPassFlow.enabled}
+      PATH.host: ${ivy.var.adobe-sign-connector.host}
+      AUTH.integrationKey: ${ivy.var.adobe-sign-connector.integrationKey}
+    OpenAPI:
+      SpecUrl: file:///C:/Users/jpl/Downloads/json/REST-SDK-V6-master/json/baseUrisV3.json
+      Namespace: api.rest.v6.client
+  Agreements:
+    UUID: 8e96fab1-4701-47cb-ae35-d821bb12305b
+    Url: https://{host}/api/rest/v6
+    Features:
+    - com.axonivy.connector.adobe.esign.connector.json.OpenApiJsonFeature
+    - com.axonivy.connector.adobe.esign.connector.auth.OAuth2Feature
+    Properties:
+      AUTH.scope: ${ivy.var.adobe-sign-connector.permissions}
+      AUTH.baseUri: ${ivy.var.adobe-sign-connector.baseUri}
+      JSON.Serialization.PROPERTY_INCLUSION: NON_NULL
+      AUTH.clientId: ${ivy.var.adobe-sign-connector.clientId}
+      AUTH.clientSecret: ${ivy.var.adobe-sign-connector.clientSecret}
+      AUTH.useAppPermissions: ${ivy.var.adobe-sign-connector.useAppPermissions}
+      AUTH.useUserPassFlow: ${ivy.var.adobe-sign-connector.useUserPassFlow.enabled}
+      PATH.host: ${ivy.var.adobe-sign-connector.host}
+      AUTH.integrationKey: ${ivy.var.adobe-sign-connector.integrationKey}
+    OpenAPI:
+      SpecUrl: file:///C:/Users/jpl/OneDrive%20-%20Docuware%20GmbH/data/Projekte/Ricoh/HR%20Transformation/Adobe%20Sign/agreementsV2.json
+      Namespace: api.rest.v6.client
+      ResolveFully: true
+  TransientDocuments:
+    UUID: 6a243983-5f6d-4278-89ec-aab09fea161c
+    Url: https://{host}/api/rest/v6
+    Features:
+    - org.glassfish.jersey.media.multipart.MultiPartFeature
+    - com.axonivy.connector.adobe.esign.connector.auth.OAuth2Feature
+    - ch.ivyteam.ivy.rest.client.mapper.JsonFeature
+    Properties:
+      AUTH.scope: ${ivy.var.adobe-sign-connector.permissions}
+      AUTH.baseUri: ${ivy.var.adobe-sign-connector.baseUri}
+      JSON.Serialization.PROPERTY_INCLUSION: NON_NULL
+      AUTH.clientId: ${ivy.var.adobe-sign-connector.clientId}
+      AUTH.clientSecret: ${ivy.var.adobe-sign-connector.clientSecret}
+      AUTH.useAppPermissions: ${ivy.var.adobe-sign-connector.useAppPermissions}
+      AUTH.useUserPassFlow: ${ivy.var.adobe-sign-connector.useUserPassFlow.enabled}
+      PATH.host: ${ivy.var.adobe-sign-connector.host}
+      AUTH.integrationKey: ${ivy.var.adobe-sign-connector.integrationKey}
+    OpenAPI:
+      SpecUrl: file:///C:/tmp/ricoh/adobe/transientDocumentsV2.json
+      Namespace: api.rest.v6.client
+      ResolveFully: true

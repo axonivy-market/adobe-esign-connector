@@ -1,0 +1,30 @@
+{
+  "format" : "10.0.0",
+  "id" : "188B5516C4F69340",
+  "config" : {
+    "data" : "com.axonivy.connector.adobe.esign.connector.SigningReturnData"
+  },
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "RequestStart",
+      "name" : "signingReturn.ivp",
+      "config" : {
+        "callSignature" : "signingReturn",
+        "outLink" : "signingReturn.ivp",
+        "showInStartList" : false
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    }, {
+      "id" : "f1",
+      "type" : "TaskEndPage",
+      "config" : {
+        "template" : "signatureReturn.jsp"
+      },
+      "visual" : {
+        "at" : { "x" : 288, "y" : 64 }
+      }
+    } ]
+}
