@@ -55,7 +55,6 @@ public class AdobeSignService {
 	private static final String UPLOAD_SIGNATURE = "uploadDocument(UploadWrapper)";
 	private static final String DOWNLOAD_SIGNATURE = "dowloadDocument(String, String, String, Boolean)";
 	private static final String SIGNING_URL_SIGNATURE = "getSigningURLs(String,String)";
-	private static final String FORMFIELD_SIGNATURE = "addFormFields(String, FormFieldPutInfo)";
 	private static final String ID_PARAM = "id";
 	private static final String ERROR_PARAM = "error";
 	private static final String UPLOAD_PARAM = "upload";
@@ -321,7 +320,6 @@ public class AdobeSignService {
 	 */
 	public void addFormFieldsToAgreement(String agreementId, FormFieldPutInfo formFieldInfo) {
 		SubProcessCallResult callResult = SubProcessCall.withPath(AGREEMENTS_SERVICE)
-				.withStartSignature(FORMFIELD_SIGNATURE)
 				.withParam("agreementId", agreementId)
 				.withParam("formFieldInfo", formFieldInfo)
 				.call();
