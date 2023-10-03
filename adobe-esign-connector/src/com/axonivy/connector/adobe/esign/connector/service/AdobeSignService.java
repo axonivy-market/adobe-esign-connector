@@ -46,28 +46,23 @@ import ch.ivyteam.ivy.process.call.SubProcessCallResult;
 public class AdobeSignService {
 
 	private static final AdobeSignService instance = new AdobeSignService();
-
-	// process paths, signature and parameter names
 	private static final String SERVICE_BASE = "connector/";
 	private static final String TRANSIENT_DOCUMENTS_SERVICE = SERVICE_BASE + "TransientDocuments";
 	private static final String AGREEMENTS_SERVICE = SERVICE_BASE + "Agreements";
-
 	private static final String CREATE_AGREEMENT_SIGNATURE = "createAgreement(AgreementCreationInfo)";
 	private static final String GET_AGREEMENT_SIGNATURE = "getAgreementById(String)";
 	private static final String GET_DOCUMENTS_SIGNATURE = "getDocuments(String)";
 	private static final String UPLOAD_SIGNATURE = "uploadDocument(UploadWrapper)";
 	private static final String DOWNLOAD_SIGNATURE = "dowloadDocument(String, String, String, Boolean)";
 	private static final String SIGNING_URL_SIGNATURE = "getSigningURLs(String,String)";
-	private static final String FORMFIELD_SIGNATURE = "addFormFields(String, FormFieldPutInfo)";
-
 	private static final String ID_PARAM = "id";
 	private static final String ERROR_PARAM = "error";
 	private static final String UPLOAD_PARAM = "upload";
 	private static final String AGREEMENT_PARAM = "agreement";
 	private static final String AGREEMENT_ID_PARAM = "agreementId";
 
-
-	private AdobeSignService() {} // locked constructor
+	private AdobeSignService() {
+	}
 
 	public static AdobeSignService getInstance() {
 		return instance;
@@ -284,7 +279,10 @@ public class AdobeSignService {
 	public String uploadDocument(UploadWrapper upload) throws BpmError {
 		String documentId;
 
-		SubProcessCallResult callResult = SubProcessCall.withPath(TRANSIENT_DOCUMENTS_SERVICE).withStartSignature(UPLOAD_SIGNATURE).withParam(UPLOAD_PARAM, upload).call();
+		SubProcessCallResult callResult = SubProcessCall.withPath(TRANSIENT_DOCUMENTS_SERVICE)
+				.withStartSignature(UPLOAD_SIGNATURE)
+				.withParam(UPLOAD_PARAM, upload)
+				.call();
 
 		handleError(callResult);
 		documentId = callResult.get(ID_PARAM, String.class);
@@ -302,7 +300,8 @@ public class AdobeSignService {
 	 * @return
 	 */
 	public DownloadResult downloadDocument(String agreementId, String documentId, String filename, Boolean asFile) {
-		SubProcessCallResult callResult = SubProcessCall.withPath(AGREEMENTS_SERVICE).withStartSignature(DOWNLOAD_SIGNATURE)
+		SubProcessCallResult callResult = SubProcessCall.withPath(AGREEMENTS_SERVICE)
+				.withStartSignature(DOWNLOAD_SIGNATURE)
 				.withParam("agreementId", agreementId)
 				.withParam("documentId", documentId)
 				.withParam("filename", filename)
@@ -320,7 +319,7 @@ public class AdobeSignService {
 	 * @param formFieldInfo
 	 */
 	public void addFormFieldsToAgreement(String agreementId, FormFieldPutInfo formFieldInfo) {
-		SubProcessCallResult callResult = SubProcessCall.withPath(AGREEMENTS_SERVICE).withStartSignature(FORMFIELD_SIGNATURE)
+		SubProcessCallResult callResult = SubProcessCall.withPath(AGREEMENTS_SERVICE)
 				.withParam("agreementId", agreementId)
 				.withParam("formFieldInfo", formFieldInfo)
 				.call();
