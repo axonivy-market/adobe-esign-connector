@@ -439,18 +439,10 @@ public class AdobeSignService {
 
 	/**
 	 * Extracts the base url from actual request.
-	 * Example: http://localhost:8081
+	 * Example: http://www.demo.com:8081
 	 * @return
 	 */
 	private String getRequestBaseUrl() {
-//		IHttpRequest req = (IHttpRequest) Ivy.request();
-//		HttpServletRequest request = req.getHttpServletRequest();
-//        StringBuilder baseUrlBuilder = new StringBuilder();
-//        baseUrlBuilder.append(request.getScheme()).append("://").append(request.getServerName());
-//        int port = request.getServerPort();
-//        if (port != 80 && port != 443) {
-//            baseUrlBuilder.append(":").append(port);
-//        }
 		return Ivy.request().getApplication().getContextPath();
 	}
 
