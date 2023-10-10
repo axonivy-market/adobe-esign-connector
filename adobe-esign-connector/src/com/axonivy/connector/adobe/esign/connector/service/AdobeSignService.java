@@ -439,7 +439,7 @@ public class AdobeSignService {
 
 	/**
 	 * Extracts the base url from actual request.
-	 * Example: http://www.demo.com:8081
+	 * Example: https://www.demo.com/
 	 * @return
 	 */
 	private String getRequestBaseUrl() {
