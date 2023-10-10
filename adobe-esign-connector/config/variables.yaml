@@ -10,7 +10,7 @@ Variables:
     # Hostname of Adobe Sign server
     host: ''
 
-    # Relative part of URL that is called after singing was finished
+    # Relative part of URL that is called after singing was finished. In case the domain with "https" is used, the configuration of reverse proxy would be requried. Ref: https://dev.axonivy.com/doc/10.0/engine-guide/integration/reverse-proxy/index.html
     returnPage: ''
 
     # Integration key from Adobe Sign configuration

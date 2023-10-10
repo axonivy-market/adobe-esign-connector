@@ -443,7 +443,7 @@ public class AdobeSignService {
 	 * @return
 	 */
 	private String getRequestBaseUrl() {
-		return Ivy.request().getApplication().getContextPath();
+		return Ivy.html().applicationHomeRef().replace(Ivy.request().getApplication().getContextPath(), "");
 	}
 
 }
