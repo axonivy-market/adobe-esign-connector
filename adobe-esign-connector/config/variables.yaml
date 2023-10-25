@@ -29,8 +29,8 @@ Variables:
     # [password]
     clientSecret: ''
 
-    # List of permissions that will be requested for the OAuth token
-    permissions: user_read:account user_write:account user_login:account agreement_read:account agreement_write:account agreement_send:account
+    # List of permissions that will be requested for the OAuth token (e.g: user_read:account user_write:account user_login:account agreement_read:account agreement_write:account agreement_send:account)
+    permissions: ''
 
     # DO NOT MODIFY DIRECTLY, USE ADMIN SETUP PAGE. Info about the OAuth refresh token. Empty means there is no token initialized. To request a new token use the `Save and Request new Token` button
     oauthToken: ''
