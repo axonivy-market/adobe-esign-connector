@@ -16,7 +16,7 @@ Dialogs:
                   Documents: Documents
                   LoadExisting: Load existing Agreement
                   LoadExistingToo: Enter Agreement ID and load existing Agreement in case it's already created on Adobe side
-                  PDFFile: PDF file
+                  PDFFile: PDF files
                   PDFFileToSign: PDF File to sign
                   SignAsSigner1: Sign as Signer 1
                   SignAsSigner2: Sign as Signer 2

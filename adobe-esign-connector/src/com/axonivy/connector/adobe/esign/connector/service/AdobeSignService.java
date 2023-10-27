@@ -1,5 +1,6 @@
 package com.axonivy.connector.adobe.esign.connector.service;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -129,7 +130,7 @@ public class AdobeSignService {
 	public AgreementCreationInfo buildSimpleAgreementWithFormFields(String name, List<String> documentIds,
 			String signerEmail, List<AgreementsFormFieldGenerators> formFieldGenerators) {
 		AgreementCreationInfo agreement = new AgreementCreationInfo();
-
+		
 		agreement.setName(name);
 		agreement.setMessage("Please sign this document!");
 		agreement.setSignatureType(SignatureTypeEnum.ESIGN);
@@ -146,7 +147,7 @@ public class AdobeSignService {
 		String baseUrl = getRequestBaseUrl();
 		String fullUrl = baseUrl + Ivy.var().get("adobe-sign-connector.returnPage");
 		agreement.postSignOption(new AgreementsPostSignOption().redirectUrl(fullUrl));
-
+		
 		if(Objects.nonNull(formFieldGenerators)) {
 			agreement.setFormFieldGenerators(formFieldGenerators);
 		}
@@ -166,7 +167,20 @@ public class AdobeSignService {
 	public AgreementCreationInfo buildSimpleAgreementFor2SignerGroups(String name, String documentId, List<String> signers1, List<String> signers2) {
 		return buildSimpleAgreementFor2ParticipantGroups(name, documentId, signers1, RoleEnum.SIGNER, signers2, RoleEnum.SIGNER);
 	}
-
+	
+	/**
+	 * Helper method to create agreement object for two groups of signers as required for the REST service
+	 *
+	 * @param name
+	 * @param workflowId
+	 * @param documentId
+	 * @param signer1Email
+	 * @return
+	 */
+	public AgreementCreationInfo buildSimpleAgreementFor2SignerGroups(String name, List<String> documentIds, List<String> signers1, List<String> signers2) {
+		return buildSimpleAgreementFor2ParticipantGroups(name, documentIds, signers1, RoleEnum.SIGNER, signers2, RoleEnum.SIGNER);
+	}
+	
 	/**
 	 * Helper method to create agreement for two groups of participants object as required for the REST service
 	 *
@@ -177,6 +191,22 @@ public class AdobeSignService {
 	 * @return
 	 */
 	public AgreementCreationInfo buildSimpleAgreementFor2ParticipantGroups(String name, String documentId, List<String> participants1,
+			RoleEnum participants1Role, List<String> participants2, RoleEnum participants2Role) {
+		return buildSimpleAgreementFor2ParticipantGroups(name, Arrays.asList(documentId), participants1,
+				participants1Role, participants2, participants2Role);
+	}
+
+	
+	/**
+	 * Helper method to create agreement for two groups of participants object as required for the REST service
+	 *
+	 * @param name
+	 * @param workflowId
+	 * @param documentId
+	 * @param signer1Email
+	 * @return
+	 */
+	public AgreementCreationInfo buildSimpleAgreementFor2ParticipantGroups(String name, List<String> documentIds, List<String> participants1,
 			RoleEnum participants1Role, List<String> participants2, RoleEnum participants2Role) {
 		AgreementCreationInfo agreement = new AgreementCreationInfo();
 
@@ -190,8 +220,8 @@ public class AdobeSignService {
 		agreement.getParticipantSetsInfo().add(createParticipants(participants2, participants2Role, 2));
 
 		// add documentIds - need to be already transferred with the upload document service
-		agreement.setFileInfos(createFileInfosForDocumentIds(Arrays.asList(documentId)));
-
+		agreement.setFileInfos(createFileInfosForDocumentIds(documentIds));
+		
 		agreement.setEmailOption(createAllDisabledSendOptions());
 
 		String baseUrl = getRequestBaseUrl();
