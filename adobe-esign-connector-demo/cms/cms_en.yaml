@@ -14,6 +14,7 @@ Dialogs:
                   CreateAgreement: Create Agreement for 1 signer
                   CreateAgreement1: Create Agreement for 2 signers
                   Documents: Documents
+                  DownloadCombine: Download combined document
                   LoadExisting: Load existing Agreement
                   LoadExistingToo: Enter Agreement ID and load existing Agreement in case it's already created on Adobe side
                   PDFFile: PDF files
@@ -24,3 +25,4 @@ Dialogs:
                   Signer2Email: Signer 2 email
                   Signers: Signers
                   Signing: Signing
+                  UpdateDocuments: Update documents

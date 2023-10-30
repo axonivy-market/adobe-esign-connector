@@ -81,31 +81,47 @@ public class ClientService {
 		return result;
 	}
 	
+	/**
+	 * Gets the response from the provided {@link WebTarget}, creates {@link DownloadResult} and returns it
+	 * @param target
+	 * @param filename
+	 * @param asFile
+	 * @return
+	 */
 	public static DownloadResult download(WebTarget target, String filename, boolean asFile) {
 		DownloadResult result = new DownloadResult();
-		
 		try(Response response = target.request().get()) {
-			if(response.getStatus() == Response.Status.OK.getStatusCode()) {
-				try(InputStream is = response.readEntity(InputStream.class)) {
-					byte[] bytes = IOUtils.toByteArray(is);
-					result.setFilename(filename);
-					if(asFile) {
-						File file = new File(filename, true);
-						FileUtils.writeByteArrayToFile(file .getJavaFile(), bytes);
-						result.setFile(file);
-					} else {
-						result.setContent(bytes);
-					}
-				} catch (IOException e) {
-					result.setError(BpmError.create(Constants.ERROR_BASE)
-							.withMessage(IO_ERROR)
-							.withCause(e).build());
+			result = download(response, filename, asFile);
+		}
+		
+		return result;
+	}
+	
+	/***
+	 * Creates {@link DownloadResult} from the provided {@link Response}
+	 * @param response
+	 * @param filename
+	 * @param asFile
+	 * @return
+	 */
+	public static DownloadResult download(Response response, String filename, boolean asFile) {
+		DownloadResult result = new DownloadResult();
+		
+		if(response.getStatus() == Response.Status.OK.getStatusCode()) {
+			try(InputStream is = response.readEntity(InputStream.class)) {
+				byte[] bytes = IOUtils.toByteArray(is);
+				result.setFilename(filename);
+				if(asFile) {
+					File file = new File(filename, true);
+					FileUtils.writeByteArrayToFile(file .getJavaFile(), bytes);
+					result.setFile(file);
+				} else {
+					result.setContent(bytes);
 				}
-			} else {
+			} catch (IOException e) {
 				result.setError(BpmError.create(Constants.ERROR_BASE)
-						.withCause(new WebApplicationException("Http Call failed. response code is " + response.getStatus() +
-								". Error reported is " + response.getStatusInfo()))
-						.build());
+						.withMessage(IO_ERROR)
+						.withCause(e).build());
 			}
 		}
 		

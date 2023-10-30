@@ -1,10 +1,10 @@
 package com.axonivy.connector.adobe.esign.connector.service;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 import com.axonivy.connector.adobe.esign.connector.rest.DownloadResult;
 import com.axonivy.connector.adobe.esign.connector.rest.UploadWrapper;
@@ -87,6 +87,20 @@ public class AdobeSignService {
 		String documentId = uploadDocument(upload);
 		return createAgreement(buildSimpleAgreement(name, documentId, signerEmail));
 	}
+	
+	/**
+	 * Convenience method to call upload document and create agreement methods
+	 *
+	 * @param name
+	 * @param workflowId
+	 * @param signerEmail
+	 * @param upload
+	 * @return
+	 */
+	public String uploadDocumentAndCreateSimpleAgreement(String name, String signerEmail, List<UploadWrapper> upload) {
+		List<String> documentIds = uploadDocuments(upload);
+		return createAgreement(buildSimpleAgreement(name, documentIds, signerEmail));
+	}
 
 	/**
 	 * Convenience method to call upload document and create agreement methods
@@ -104,6 +118,23 @@ public class AdobeSignService {
 
 		return agreementId;
 	}
+	
+	/**
+	 * Convenience method to call upload document and create agreement methods
+	 *
+	 * @param name
+	 * @param workflowId
+	 * @param signerEmail
+	 * @param upload
+	 * @return
+	 */
+	public String uploadDocumentAndCreateSimpleAgreementWithFormFields(String name, String signerEmail, List<UploadWrapper> upload, List<AgreementsFormFieldGenerators> formFieldGenerators) {
+		List<String> documentIds = uploadDocuments(upload);
+		String agreementId = createAgreement(
+				buildSimpleAgreementWithFormFields(name, documentIds, signerEmail, formFieldGenerators));
+
+		return agreementId;
+	}
 
 	/**
 	 * Helper method to create agreement object as required for the REST service
@@ -116,6 +147,19 @@ public class AdobeSignService {
 	 */
 	public AgreementCreationInfo buildSimpleAgreement(String name, String documentId, String signerEmail) {
 		return buildSimpleAgreementWithFormFields(name, Arrays.asList(documentId), signerEmail, null);
+	}
+	
+	/**
+	 * Helper method to create agreement object as required for the REST service
+	 *
+	 * @param name
+	 * @param workflowId
+	 * @param documentId
+	 * @param signerEmail
+	 * @return
+	 */
+	public AgreementCreationInfo buildSimpleAgreement(String name, List<String> documentIds, String signerEmail) {
+		return buildSimpleAgreementWithFormFields(name, documentIds, signerEmail, null);
 	}
 
 	/**
@@ -272,7 +316,7 @@ public class AdobeSignService {
 		handleError(callResult);
 		return callResult.get("documents", AgreementDocuments.class);
 	}
-
+	
 	/**
 	 * Wrapper method to call sub process to retrieve the signing URIs of an agreement
 	 *
@@ -318,6 +362,18 @@ public class AdobeSignService {
 		documentId = callResult.get(ID_PARAM, String.class);
 
 		return documentId;
+	}
+	
+	/**
+	 * Wrapper method to call sub process to upload new transient documents required to create a new agreement
+	 *
+	 * @param upload
+	 * @return
+	 * @throws BpmError
+	 */
+	public List<String> uploadDocuments(List<UploadWrapper> upload) throws BpmError {
+		List<String> result = upload.stream().map(u -> uploadDocument(u)).collect(Collectors.toList());
+		return result;
 	}
 
 	/**

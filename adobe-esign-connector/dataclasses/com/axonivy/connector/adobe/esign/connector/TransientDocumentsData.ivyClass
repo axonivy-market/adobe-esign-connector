@@ -6,3 +6,4 @@ error ch.ivyteam.ivy.bpm.error.BpmError #field
 upload com.axonivy.connector.adobe.esign.connector.rest.UploadWrapper #field
 files java.util.List<java.io.File> #field
 ids java.util.List<String> #field
+uploadWrappers java.util.List<com.axonivy.connector.adobe.esign.connector.rest.UploadWrapper> #field

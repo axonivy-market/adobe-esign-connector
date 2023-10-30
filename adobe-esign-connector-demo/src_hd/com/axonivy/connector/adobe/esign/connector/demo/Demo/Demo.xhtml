@@ -152,6 +152,22 @@
 					<div class="ui-fluid ">
 						<div class="p-field p-grid p-align-baseline">
 							<div class="p-col-12 p-md-6">
+								<p:commandButton value="#{ivy.cms.co('/Dialogs/com/axonivy/connector/adobe/esign/connector/demo/Demo/UpdateDocuments')}" 
+									icon="fa-solid fa-refresh"
+									actionListener="#{logic.updateDocuments}" update="@form"
+									process="@form" />
+							</div>
+							<div class="p-col-12 p-md-6">
+								<p:commandButton
+									value="#{ivy.cms.co('/Dialogs/com/axonivy/connector/adobe/esign/connector/demo/Demo/DownloadCombine')}"
+									icon="fa-solid fa-file-download"
+									actionListener="#{logic.downloadCombinedDocument()}"
+									ajax="false"
+									rendered="#{data.documents.getDocuments().size() gt 0}">
+									<p:fileDownload value="#{data.documentContent}" />
+								</p:commandButton>
+							</div>
+							<div class="p-col-12 p-md-12">
 								<p:dataTable id="documentTable"
 									value="#{data.documents.getDocuments()}"
 									rendered="#{data.documents.getDocuments().size() gt 0}" var="d">
@@ -163,11 +179,6 @@
 										</p:commandLink>
 									</p:column>
 								</p:dataTable>
-							</div>
-							<div class="p-col-12 p-md-6">
-								<p:commandButton value="Update documents"
-									actionListener="#{logic.updateDocuments}" update="@form"
-									process="@form" />
 							</div>
 						</div>
 					</div>

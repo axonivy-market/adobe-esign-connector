@@ -175,7 +175,7 @@
         "callSignature" : "uploadDocuments",
         "input" : {
           "params" : [
-            { "name" : "files", "type" : "java.util.List<java.io.File>", "desc" : "file to upload" }
+            { "name" : "files", "type" : "java.util.List<java.io.File>", "desc" : "files to upload" }
           ],
           "map" : {
             "out.files" : "param.files"
@@ -288,5 +288,126 @@
         "at" : { "x" : 544, "y" : 360 }
       },
       "connect" : { "id" : "f24", "to" : "f23" }
+    }, {
+      "id" : "f28",
+      "type" : "CallSubStart",
+      "name" : "uploadDocuments(List<UploadWrapper)",
+      "config" : {
+        "callSignature" : "uploadDocuments",
+        "input" : {
+          "params" : [
+            { "name" : "uploadWrappers", "type" : "java.util.List<com.axonivy.connector.adobe.esign.connector.rest.UploadWrapper>", "desc" : "file to upload" }
+          ],
+          "map" : {
+            "out.uploadWrappers" : "param.uploadWrappers"
+          }
+        },
+        "result" : {
+          "params" : [
+            { "name" : "ids", "type" : "java.util.List<String>", "desc" : "ids of uploaded files" },
+            { "name" : "error", "type" : "ch.ivyteam.ivy.bpm.error.BpmError", "desc" : "holds error if one occurs, empty otherwise" }
+          ],
+          "map" : {
+            "result.ids" : "in.#ids",
+            "result.error" : "in.#error"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 512 }
+      },
+      "connect" : { "id" : "f39", "to" : "f32" }
+    }, {
+      "id" : "f29",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 776, "y" : 512 }
+      }
+    }, {
+      "id" : "f32",
+      "type" : "Script",
+      "name" : "pop file from list",
+      "config" : {
+        "output" : {
+          "code" : "in.upload = in.uploadWrappers.removeGet(0);"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 224, "y" : 512 }
+      },
+      "connect" : { "id" : "f30", "to" : "f42" }
+    }, {
+      "id" : "f33",
+      "type" : "Alternative",
+      "name" : "files size > 0",
+      "visual" : {
+        "at" : { "x" : 672, "y" : 512 },
+        "labelOffset" : { "x" : 14, "y" : 34 }
+      },
+      "connect" : [
+        { "id" : "f38", "to" : "f32", "via" : [ { "x" : 672, "y" : 456 }, { "x" : 224, "y" : 456 } ], "label" : {
+            "name" : "yes",
+            "segment" : 0.5,
+            "offset" : { "x" : 1, "y" : -6 }
+          }, "condition" : "in.uploadWrappers.size() > 0" },
+        { "id" : "f36", "to" : "f29", "label" : {
+            "name" : "no"
+          } }
+      ]
+    }, {
+      "id" : "f34",
+      "type" : "Script",
+      "name" : "add id result",
+      "config" : {
+        "output" : {
+          "code" : "in.ids.add(in.id);"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 544, "y" : 512 }
+      },
+      "connect" : { "id" : "f41", "to" : "f33" }
+    }, {
+      "id" : "f42",
+      "type" : "RestClientCall",
+      "config" : {
+        "bodyForm" : {
+          "File-Name" : "",
+          "Mime-Type" : "",
+          "File" : "in.file"
+        },
+        "path" : "/transientDocuments",
+        "clientId" : "6a243983-5f6d-4278-89ec-aab09fea161c",
+        "clientErrorCode" : "ivy:error:rest:client",
+        "method" : "JAX_RS",
+        "statusErrorCode" : "ivy:error:rest:client",
+        "clientCode" : [
+          "import com.axonivy.connector.adobe.esign.connector.rest.UploadResult;",
+          "import com.axonivy.connector.adobe.esign.connector.rest.ClientService;",
+          "UploadResult result = ClientService.upload(client, in.upload.filename, in.upload.bytes);",
+          "",
+          "if(!result.#error is initialized) {",
+          "  in.id = result.#id;",
+          "} else {",
+          "  in.error = result.#error;",
+          "}"
+        ],
+        "bodyObjectType" : "api.rest.v6.client.TransientDocumentsBody",
+        "resultType" : "api.rest.v6.client.TransientDocumentResponse",
+        "bodyInputType" : "FORM",
+        "bodyMediaType" : "multipart/form-data"
+      },
+      "visual" : {
+        "at" : { "x" : 384, "y" : 512 }
+      },
+      "boundaries" : [ {
+          "id" : "f35",
+          "type" : "ErrorBoundaryEvent",
+          "visual" : {
+            "at" : { "x" : 416, "y" : 552 }
+          },
+          "connect" : { "id" : "f37", "to" : "f29", "via" : [ { "x" : 776, "y" : 552 } ] }
+        } ],
+      "connect" : { "id" : "f31", "to" : "f34" }
     } ]
 }
