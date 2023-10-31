@@ -34,18 +34,18 @@ The demo project can be used to test the authentication and signing and the demo
 :exclamation: The demo will work only after correct setup of the connector
  ![demo1](images/demo1.png)
 
- 1. Choose and upload a PDF file
+ 1. Choose and upload one or more PDF files
  2. Fill email of 1 or 2 signers
  3. Create Agreement for 1 or 2 signers
  4. Sign as signer 1 or 2
- 5. A modal dialog with Adobe signing page is opened. Create a signature in the document.
+ 5. A modal dialog with Adobe signing page is opened. Create a signature in the document. If multiple documents were sent to signing then all of them are displayed here and can be signed in one step.
  ![demo1](images/demo2.png)
 
  6. Confirm the signature with **Click to Sign**
 
  ![demo1](images/demo3.png)
 
- 7. The signed document can be downloaded
+ 7. The signed documents can be downloaded separatelly or as a combined document
 
  ![demo1](images/demo4.png)
 
