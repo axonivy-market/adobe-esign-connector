@@ -446,5 +446,88 @@
           "connect" : { "id" : "f41", "to" : "f36", "via" : [ { "x" : 472, "y" : 690 } ] }
         } ],
       "connect" : { "id" : "f39", "to" : "f36" }
+    }, {
+      "id" : "f42",
+      "type" : "CallSubStart",
+      "name" : "dowloadCombinedDocument(String, Boolean)",
+      "config" : {
+        "callSignature" : "dowloadCombinedDocument",
+        "input" : {
+          "params" : [
+            { "name" : "agreementId", "type" : "String", "desc" : "id of agreement" },
+            { "name" : "asFile", "type" : "Boolean", "desc" : "option to return an ivy file in result object. default is false which returns the byte[]" },
+            { "name" : "filename", "type" : "String", "desc" : "name of file" }
+          ],
+          "map" : {
+            "out.agreementId" : "param.agreementId",
+            "out.asFileOption" : "param.asFile",
+            "out.filename" : "param.filename"
+          }
+        },
+        "result" : {
+          "params" : [
+            { "name" : "download", "type" : "com.axonivy.connector.adobe.esign.connector.rest.DownloadResult", "desc" : "DownloadResult" },
+            { "name" : "error", "type" : "ch.ivyteam.ivy.bpm.error.BpmError" }
+          ],
+          "map" : {
+            "result.download" : "in.download",
+            "result.error" : "in.#error"
+          }
+        },
+        "tags" : "connector"
+      },
+      "visual" : {
+        "at" : { "x" : 80, "y" : 776 },
+        "description" : "Downloads all documents combined to one pdf document"
+      },
+      "connect" : { "id" : "f47", "to" : "f43" }
+    }, {
+      "id" : "f43",
+      "type" : "RestClientCall",
+      "name" : "get combined documents of agreement",
+      "config" : {
+        "path" : "/agreements/{agreementId}/combinedDocument",
+        "clientId" : "8e96fab1-4701-47cb-ae35-d821bb12305b",
+        "clientErrorCode" : "ivy:error:rest:client",
+        "method" : "GET",
+        "queryParams" : {
+          "versionId" : "",
+          "participantId" : "",
+          "attachSupportingDocuments" : "",
+          "attachAuditReport" : ""
+        },
+        "statusErrorCode" : "ivy:error:rest:client",
+        "clientCode" : [
+          "import com.axonivy.connector.adobe.esign.connector.rest.ClientService;",
+          "",
+          "in.download = ClientService.download(client, in.filename, in.asFileOption);"
+        ],
+        "templateParams" : {
+          "agreementId" : "in.agreementId",
+          "documentId" : ""
+        },
+        "responseCode" : [
+          "import com.axonivy.connector.adobe.esign.connector.rest.ClientService;",
+          "in.download = ClientService.download(response, in.filename, in.asFileOption);"
+        ]
+      },
+      "visual" : {
+        "at" : { "x" : 272, "y" : 776 }
+      },
+      "boundaries" : [ {
+          "id" : "f44",
+          "type" : "ErrorBoundaryEvent",
+          "visual" : {
+            "at" : { "x" : 304, "y" : 816 }
+          },
+          "connect" : { "id" : "f48", "to" : "f45", "via" : [ { "x" : 464, "y" : 816 } ] }
+        } ],
+      "connect" : { "id" : "f46", "to" : "f45" }
+    }, {
+      "id" : "f45",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 464, "y" : 776 }
+      }
     } ]
 }

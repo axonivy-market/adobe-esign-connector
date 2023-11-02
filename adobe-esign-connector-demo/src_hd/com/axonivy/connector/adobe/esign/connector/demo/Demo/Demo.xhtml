@@ -25,18 +25,24 @@
 				<p:remoteCommand name="updateDocument"
 					actionListener="#{logic.updateDocuments}" update="@form" />
 				<p:messages />
-				<p:fieldset
+				<p:fieldset id="pdfFiles"
 					legend="#{ivy.cms.co('/Dialogs/com/axonivy/connector/adobe/esign/connector/demo/Demo/PDFFile')}">
 					<div class="ui-fluid ">
 						<div class="p-field p-grid p-align-baseline">
-							<div class="p-col-12 p-md-6">
-								<p:outputLabel
-									value="#{ivy.cms.co('/Dialogs/com/axonivy/connector/adobe/esign/connector/demo/Demo/PDFFileToSign')}" />
+							<div class="p-col-12 p-md-12">
+								<p:fileUpload listener="#{logic.handleFilesUpload}" mode="simple" dragDropSupport="false"
+				                      multiple="true" update="pdfFiles" skinSimple="true" auto="true" allowTypes="/(\.|\/)(pdf)$/" />
 							</div>
-							<div class="p-col-12 p-md-6">
-								<p:fileUpload value="#{data.file}" mode="simple" id="fileUpload"
-									skinSimple="true" >
-								</p:fileUpload>
+							<div class="p-col-12 p-md-12">
+								<p:dataTable id="filesTable"
+									value="#{data.files}" var="file">
+									<p:column id="name">
+										<p:outputLabel value="#{file.name}"/>
+									</p:column>
+									<p:column id="actions">
+										<p:commandButton process="@this" update="filesTable" icon="fa-solid fa-trash" actionListener="#{logic.deleteFile(file)}"/>
+									</p:column>
+								</p:dataTable>
 							</div>
 						</div>
 					</div>
@@ -146,6 +152,22 @@
 					<div class="ui-fluid ">
 						<div class="p-field p-grid p-align-baseline">
 							<div class="p-col-12 p-md-6">
+								<p:commandButton value="#{ivy.cms.co('/Dialogs/com/axonivy/connector/adobe/esign/connector/demo/Demo/UpdateDocuments')}" 
+									icon="fa-solid fa-refresh"
+									actionListener="#{logic.updateDocuments}" update="@form"
+									process="@form" />
+							</div>
+							<div class="p-col-12 p-md-6">
+								<p:commandButton
+									value="#{ivy.cms.co('/Dialogs/com/axonivy/connector/adobe/esign/connector/demo/Demo/DownloadCombine')}"
+									icon="fa-solid fa-file-download"
+									actionListener="#{logic.downloadCombinedDocument()}"
+									ajax="false"
+									rendered="#{data.documents.getDocuments().size() gt 0}">
+									<p:fileDownload value="#{data.documentContent}" />
+								</p:commandButton>
+							</div>
+							<div class="p-col-12 p-md-12">
 								<p:dataTable id="documentTable"
 									value="#{data.documents.getDocuments()}"
 									rendered="#{data.documents.getDocuments().size() gt 0}" var="d">
@@ -157,11 +179,6 @@
 										</p:commandLink>
 									</p:column>
 								</p:dataTable>
-							</div>
-							<div class="p-col-12 p-md-6">
-								<p:commandButton value="Update documents"
-									actionListener="#{logic.updateDocuments}" update="@form"
-									process="@form" />
 							</div>
 						</div>
 					</div>

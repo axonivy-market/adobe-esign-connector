@@ -22,3 +22,7 @@ download com.axonivy.connector.adobe.esign.connector.rest.DownloadResult #field
 download PERSISTENT #fieldModifier
 filename String #field
 filename PERSISTENT #fieldModifier
+documentIds java.util.List<String> #field
+documentIds PERSISTENT #fieldModifier
+files java.util.List<java.io.File> #field
+files PERSISTENT #fieldModifier
