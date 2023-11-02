@@ -130,10 +130,8 @@ public class AdobeSignService {
 	 */
 	public String uploadDocumentAndCreateSimpleAgreementWithFormFields(String name, String signerEmail, List<UploadWrapper> upload, List<AgreementsFormFieldGenerators> formFieldGenerators) {
 		List<String> documentIds = uploadDocuments(upload);
-		String agreementId = createAgreement(
+		return createAgreement(
 				buildSimpleAgreementWithFormFields(name, documentIds, signerEmail, formFieldGenerators));
-
-		return agreementId;
 	}
 
 	/**
@@ -372,8 +370,7 @@ public class AdobeSignService {
 	 * @throws BpmError
 	 */
 	public List<String> uploadDocuments(List<UploadWrapper> upload) throws BpmError {
-		List<String> result = upload.stream().map(u -> uploadDocument(u)).collect(Collectors.toList());
-		return result;
+		return upload.stream().map(u -> uploadDocument(u)).collect(Collectors.toList());
 	}
 
 	/**

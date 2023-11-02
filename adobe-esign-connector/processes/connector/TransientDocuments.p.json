@@ -250,7 +250,11 @@
       "name" : "pop file from list",
       "config" : {
         "output" : {
-          "code" : "in.file = in.files.removeGet(0);"
+          "code" : [
+            "if(in.#files != null && !in.#files.isEmpty()) {",
+            "  in.file = in.files.removeGet(0);",
+            "}"
+          ]
         }
       },
       "visual" : {
@@ -329,7 +333,11 @@
       "name" : "pop file from list",
       "config" : {
         "output" : {
-          "code" : "in.upload = in.uploadWrappers.removeGet(0);"
+          "code" : [
+            "if(in.#uploadWrappers != null && !in.#uploadWrappers.isEmpty()) {",
+            "  in.upload = in.uploadWrappers.removeGet(0);",
+            "}"
+          ]
         }
       },
       "visual" : {
@@ -403,6 +411,14 @@
       "boundaries" : [ {
           "id" : "f35",
           "type" : "ErrorBoundaryEvent",
+          "config" : {
+            "output" : {
+              "map" : {
+                "out" : "in",
+                "out.error" : "#error"
+              }
+            }
+          },
           "visual" : {
             "at" : { "x" : 416, "y" : 552 }
           },
