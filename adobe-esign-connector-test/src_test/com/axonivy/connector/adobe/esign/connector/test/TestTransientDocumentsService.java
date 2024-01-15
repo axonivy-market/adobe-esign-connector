@@ -17,7 +17,7 @@ import ch.ivyteam.ivy.bpm.exec.client.IvyProcessTest;
 import ch.ivyteam.ivy.environment.AppFixture;
 import ch.ivyteam.ivy.security.ISession;
 
-@IvyProcessTest
+@IvyProcessTest(enableWebServer = true)
 public class TestTransientDocumentsService extends TestAdobeSignConnector {
 	
 	

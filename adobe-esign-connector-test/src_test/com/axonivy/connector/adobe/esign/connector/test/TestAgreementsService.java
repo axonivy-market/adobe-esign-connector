@@ -29,7 +29,7 @@ import ch.ivyteam.ivy.environment.AppFixture;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.ISession;
 
-@IvyProcessTest
+@IvyProcessTest(enableWebServer = true)
 public class TestAgreementsService extends TestAdobeSignConnector {
 
 	private static final BpmElement testeeCreateAgreement = BpmProcess.path("connector/Agreements")

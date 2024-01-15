@@ -19,9 +19,8 @@ public class BearerTokenAuthorizationFilter implements ClientRequestFilter {
 	public void filter(ClientRequestContext requestContext) throws IOException {
 		FeatureConfig config = new FeatureConfig(requestContext.getConfiguration(), BearerTokenAuthorizationFilter.class);
 		String integrationKey = config.readMandatory(INTEGRATIONKEY);
-		if(StringUtils.isNotBlank(integrationKey)) {
+		if (StringUtils.isNotBlank(integrationKey)) {
 			requestContext.getHeaders().add(AUTHORIZATION, BEARER + integrationKey);
 		}
 	}
-
 }
