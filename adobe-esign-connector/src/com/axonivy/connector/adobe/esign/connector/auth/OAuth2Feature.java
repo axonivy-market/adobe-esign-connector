@@ -106,27 +106,27 @@ public class OAuth2Feature implements Feature {
 
 	public static class AccessTokenRequest {
 
-		public String grant_type;
-		public String client_id;
-		public String client_secret;
-		public String redirect_uri;
+		public String grantType;
+		public String clientId;
+		public String clientSecret;
+		public String redirectUri;
 		public String code;
 
-		public AccessTokenRequest(String code, String client_id, String client_secret, String redirect_uri) {
-			this.grant_type = "authorization_code";
-			this.client_id = client_id;
-			this.client_secret = client_secret;
-			this.redirect_uri = redirect_uri;
+		public AccessTokenRequest(String code, String clientId, String clientSecret, String redirectUri) {
+			this.grantType = "authorization_code";
+			this.clientId = clientId;
+			this.clientSecret = clientSecret;
+			this.redirectUri = redirectUri;
 			this.code = code;
 		}
 
 		public MultivaluedMap<String, String> paramsMap() {
 			MultivaluedMap<String, String> values = new MultivaluedHashMap<>();
 			values.put("code", Arrays.asList(code));
-			values.put("client_id", Arrays.asList(client_id));
-			values.put("client_secret", Arrays.asList(client_secret));
-			values.put("redirect_uri", Arrays.asList(redirect_uri));
-			values.put("grant_type", Arrays.asList(grant_type));
+			values.put("client_id", Arrays.asList(clientId));
+			values.put("client_secret", Arrays.asList(clientSecret));
+			values.put("redirect_uri", Arrays.asList(redirectUri));
+			values.put("grant_type", Arrays.asList(grantType));
 			return values;
 		}
 
@@ -138,31 +138,31 @@ public class OAuth2Feature implements Feature {
 					client_secret=%s&
 					redirect_uri=%s
 					grant_type=%s
-					""", code, client_id, client_secret, redirect_uri, grant_type);
+					""", code, clientId, clientSecret, redirectUri, grantType);
 		}
 
 	}
 
 	public static class RefreshTokenRequest {
 
-		public String grant_type;
-		public String refresh_token;
-		public String client_id;
-		public String client_secret;
+		public String grantType;
+		public String refreshToken;
+		public String clientId;
+		public String clientSecret;
 
-		public RefreshTokenRequest(String refreshToken, String client_id, String client_secret) {
-			this.grant_type = "refresh_token";
-			this.refresh_token = refreshToken;
-			this.client_id = client_id;
-			this.client_secret = client_secret;
+		public RefreshTokenRequest(String refreshToken, String clientId, String clientSecret) {
+			this.grantType = "refresh_token";
+			this.refreshToken = refreshToken;
+			this.clientId = clientId;
+			this.clientSecret = clientSecret;
 		}
 
 		public MultivaluedMap<String, String> paramsMap() {
 			MultivaluedMap<String, String> values = new MultivaluedHashMap<>();
-			values.put("client_id", Arrays.asList(client_id));
-			values.put("client_secret", Arrays.asList(client_secret));
-			values.put("refresh_token", Arrays.asList(refresh_token));
-			values.put("grant_type", Arrays.asList(grant_type));
+			values.put("client_id", Arrays.asList(clientId));
+			values.put("client_secret", Arrays.asList(clientSecret));
+			values.put("refresh_token", Arrays.asList(refreshToken));
+			values.put("grant_type", Arrays.asList(grantType));
 			return values;
 		}
 
@@ -173,7 +173,7 @@ public class OAuth2Feature implements Feature {
 					client_secret=%s&
 					refresh_token=%s
 					grant_type=%s
-					""", client_id, client_secret, refresh_token, grant_type);
+					""", clientId, clientSecret, refreshToken, grantType);
 		}
 	}
 
