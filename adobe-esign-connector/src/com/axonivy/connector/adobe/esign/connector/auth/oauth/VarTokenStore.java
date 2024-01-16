@@ -16,11 +16,11 @@ public class VarTokenStore {
 	public static VarTokenStore get(String varName) {
 		return new VarTokenStore(varName);
 	}
-	
+
 	VarTokenStore(String varName) {
 		this.varName = varName;
 	}
-	
+
 	/**
 	 * Loads Variable and tries to create the token object {@link Token}
 	 * @return
@@ -36,7 +36,7 @@ public class VarTokenStore {
 		}
 		return token;
 	}
-	
+
 	/**
 	 * Stores token object {@link Token} as a json to Variable
 	 * @param token

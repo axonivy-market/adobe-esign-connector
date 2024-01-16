@@ -13,7 +13,7 @@ import ch.ivyteam.ivy.rest.client.mapper.JsonFeature;
 
 /**
  * JSON object mapper that complies with generated JAX-RS client pojos.
- * 
+ *
  * @since 9.2
  */
 public class OpenApiJsonFeature extends JsonFeature

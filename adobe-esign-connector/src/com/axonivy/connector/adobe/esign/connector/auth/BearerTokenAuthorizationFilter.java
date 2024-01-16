@@ -10,7 +10,7 @@ import org.apache.commons.lang.StringUtils;
 import ch.ivyteam.ivy.rest.client.FeatureConfig;
 
 public class BearerTokenAuthorizationFilter implements ClientRequestFilter {
-	
+
 	private static final String INTEGRATIONKEY = "AUTH.integrationKey";
 	private static final String AUTHORIZATION = "Authorization";
 	private static final String BEARER = "Bearer ";

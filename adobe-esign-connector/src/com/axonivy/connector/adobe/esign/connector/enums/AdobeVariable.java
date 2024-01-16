@@ -3,17 +3,17 @@ package com.axonivy.connector.adobe.esign.connector.enums;
 import ch.ivyteam.ivy.environment.Ivy;
 
 public enum AdobeVariable {
-	BASE_URI("adobe-sign-connector.baseUri"), 
+	BASE_URI("adobe-sign-connector.baseUri"),
 	HOST("adobe-sign-connector.host"),
-	INTEGRATION_KEY("adobe-sign-connector.integrationKey"), 
+	INTEGRATION_KEY("adobe-sign-connector.integrationKey"),
 	RETURN_PAGE("adobe-sign-connector.returnPage"),
-	PERMISSIONS("adobe-sign-connector.permissions"), 
+	PERMISSIONS("adobe-sign-connector.permissions"),
 	CLIENT_ID("adobe-sign-connector.clientId"),
-	CLIENT_SECRET("adobe-sign-connector.clientSecret"), 
+	CLIENT_SECRET("adobe-sign-connector.clientSecret"),
 	APP_ID("adobe-sign-connector.appId"),
-	SECRET_KEY("adobe-sign-connector.secretKey"), 
+	SECRET_KEY("adobe-sign-connector.secretKey"),
 	USE_APP_PERMISSIONS("adobe-sign-connector.useAppPermissions"),
-	CODE("adobe-sign-connector.code"), 
+	CODE("adobe-sign-connector.code"),
 	USE_USER_PASS_FLOW_ENABLED("adobe-sign-connector.useUserPassFlow.enabled"),
 	USE_USER_PASS_FLOW_USER("adobe-sign-connector.useUserPassFlow.user"),
 	USE_USER_PASS_FLOW_PASS("adobe-sign-connector.useUserPassFlow.pass"),
@@ -30,11 +30,11 @@ public enum AdobeVariable {
 	public String getVariableName() {
 		return variableName;
 	}
-	
+
 	public String getValue() {
 		return Ivy.var().get(variableName);
 	}
-	
+
 	/**
 	 * Sets new value to the Variable
 	 * @param newValue

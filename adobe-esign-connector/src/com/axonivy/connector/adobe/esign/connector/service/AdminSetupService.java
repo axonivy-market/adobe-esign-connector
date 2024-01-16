@@ -89,7 +89,7 @@ public class AdminSetupService {
 	/**
 	 * Tries to get the OAuth access token with given code and parameters loaded.
 	 * Stores the token in the Variable {@link AdobeVariable#OAUTH_TOKEN}
-	 * 
+	 *
 	 * @param authCode
 	 * @throws URISyntaxException
 	 */
@@ -123,7 +123,7 @@ public class AdminSetupService {
 
 	/**
 	 * Creates URI for redirecting after Adobe authentication
-	 * 
+	 *
 	 * @return
 	 */
 	public static String createRedirectUrl() {

@@ -12,7 +12,7 @@ import com.axonivy.connector.adobe.esign.connector.rest.DownloadResult;
 
 /**
  * Utility class for JSF file handling e.g. to create StreamedContent
- * 
+ *
  * @author jpl
  *
  */
@@ -33,13 +33,13 @@ public class FileUtils {
 				})
 				.build();
 	}
-	
+
 	public static InputStream toInputStream(byte[] bytes) {
 		if (bytes != null) {
 			return new ByteArrayInputStream(bytes);
 		}
-	
+
 		return new ByteArrayInputStream(new byte[0]);
 	}
-	
+
 }

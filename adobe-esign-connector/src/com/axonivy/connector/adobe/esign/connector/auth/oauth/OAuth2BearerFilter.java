@@ -47,11 +47,8 @@ public class OAuth2BearerFilter implements javax.ws.rs.client.ClientRequestFilte
 
 	@Override
 	public void filter(ClientRequestContext context) throws IOException {
-		if (uriFactory.isAuthRequest(context.getUri())) { // already in token request: avoid stackOverflow
-			return;
-		}
-
-		if (context.getHeaders().containsKey(AUTHORIZATION)) { // already set by other feature or explicit header
+		// already set by other feature or explicit header or already in token request: avoid stackOverflow
+		if (uriFactory.isAuthRequest(context.getUri()) || context.getHeaders().containsKey(AUTHORIZATION)) {
 			return;
 		}
 

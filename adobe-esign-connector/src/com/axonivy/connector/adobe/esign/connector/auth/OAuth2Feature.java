@@ -97,7 +97,7 @@ public class OAuth2Feature implements Feature {
 
 	/**
 	 * Use the JWT grant?
-	 * 
+	 *
 	 * @param use
 	 */
 	public static boolean isTrue(Optional<String> use) {

@@ -87,7 +87,7 @@ public class AdobeSignService {
 		String documentId = uploadDocument(upload);
 		return createAgreement(buildSimpleAgreement(name, documentId, signerEmail));
 	}
-	
+
 	/**
 	 * Convenience method to call upload document and create agreement methods
 	 *
@@ -118,7 +118,7 @@ public class AdobeSignService {
 
 		return agreementId;
 	}
-	
+
 	/**
 	 * Convenience method to call upload document and create agreement methods
 	 *
@@ -146,7 +146,7 @@ public class AdobeSignService {
 	public AgreementCreationInfo buildSimpleAgreement(String name, String documentId, String signerEmail) {
 		return buildSimpleAgreementWithFormFields(name, Arrays.asList(documentId), signerEmail, null);
 	}
-	
+
 	/**
 	 * Helper method to create agreement object as required for the REST service
 	 *
@@ -172,7 +172,7 @@ public class AdobeSignService {
 	public AgreementCreationInfo buildSimpleAgreementWithFormFields(String name, List<String> documentIds,
 			String signerEmail, List<AgreementsFormFieldGenerators> formFieldGenerators) {
 		AgreementCreationInfo agreement = new AgreementCreationInfo();
-		
+
 		agreement.setName(name);
 		agreement.setMessage("Please sign this document!");
 		agreement.setSignatureType(SignatureTypeEnum.ESIGN);
@@ -189,7 +189,7 @@ public class AdobeSignService {
 		String baseUrl = getRequestBaseUrl();
 		String fullUrl = baseUrl + Ivy.var().get("adobe-sign-connector.returnPage");
 		agreement.postSignOption(new AgreementsPostSignOption().redirectUrl(fullUrl));
-		
+
 		if(Objects.nonNull(formFieldGenerators)) {
 			agreement.setFormFieldGenerators(formFieldGenerators);
 		}
@@ -209,7 +209,7 @@ public class AdobeSignService {
 	public AgreementCreationInfo buildSimpleAgreementFor2SignerGroups(String name, String documentId, List<String> signers1, List<String> signers2) {
 		return buildSimpleAgreementFor2ParticipantGroups(name, documentId, signers1, RoleEnum.SIGNER, signers2, RoleEnum.SIGNER);
 	}
-	
+
 	/**
 	 * Helper method to create agreement object for two groups of signers as required for the REST service
 	 *
@@ -222,7 +222,7 @@ public class AdobeSignService {
 	public AgreementCreationInfo buildSimpleAgreementFor2SignerGroups(String name, List<String> documentIds, List<String> signers1, List<String> signers2) {
 		return buildSimpleAgreementFor2ParticipantGroups(name, documentIds, signers1, RoleEnum.SIGNER, signers2, RoleEnum.SIGNER);
 	}
-	
+
 	/**
 	 * Helper method to create agreement for two groups of participants object as required for the REST service
 	 *
@@ -238,7 +238,7 @@ public class AdobeSignService {
 				participants1Role, participants2, participants2Role);
 	}
 
-	
+
 	/**
 	 * Helper method to create agreement for two groups of participants object as required for the REST service
 	 *
@@ -263,7 +263,7 @@ public class AdobeSignService {
 
 		// add documentIds - need to be already transferred with the upload document service
 		agreement.setFileInfos(createFileInfosForDocumentIds(documentIds));
-		
+
 		agreement.setEmailOption(createAllDisabledSendOptions());
 
 		String baseUrl = getRequestBaseUrl();
@@ -314,7 +314,7 @@ public class AdobeSignService {
 		handleError(callResult);
 		return callResult.get("documents", AgreementDocuments.class);
 	}
-	
+
 	/**
 	 * Wrapper method to call sub process to retrieve the signing URIs of an agreement
 	 *
@@ -361,7 +361,7 @@ public class AdobeSignService {
 
 		return documentId;
 	}
-	
+
 	/**
 	 * Wrapper method to call sub process to upload new transient documents required to create a new agreement
 	 *

@@ -111,7 +111,7 @@ public class TestAgreementsService extends TestAdobeSignConnector {
 		ExecutionResult result = bpmClient.start().subProcess(testeeGetSigningUrls)
 				.withParam("agreementId", agreementId).withParam("frameParent", frameParent).execute();
 		AgreementsData data = result.data().last();
-		
+
 		List<SigningUrlResponseSigningUrlSetInfos> signingUrls = data.getSigningUrls();
 
 		assertThat(signingUrls).isNotNull();
