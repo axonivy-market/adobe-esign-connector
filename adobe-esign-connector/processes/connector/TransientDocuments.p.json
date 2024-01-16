@@ -108,7 +108,8 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 96, "y" : 184 }
+        "at" : { "x" : 96, "y" : 184 },
+        "labelOffset" : { "x" : 17, "y" : 49 }
       },
       "connect" : { "id" : "f13", "to" : "f5" }
     }, {
@@ -170,7 +171,7 @@
     }, {
       "id" : "f14",
       "type" : "CallSubStart",
-      "name" : "uploadDocuments(List<File)",
+      "name" : "uploadDocuments(List<File>)",
       "config" : {
         "callSignature" : "uploadDocuments",
         "input" : {
@@ -193,7 +194,8 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 96, "y" : 360 }
+        "at" : { "x" : 96, "y" : 360 },
+        "labelOffset" : { "x" : 17, "y" : 49 }
       },
       "connect" : { "id" : "f22", "to" : "f21" }
     }, {
@@ -273,10 +275,11 @@
         { "id" : "f26", "to" : "f21", "via" : [ { "x" : 672, "y" : 304 }, { "x" : 224, "y" : 304 } ], "label" : {
             "name" : "yes",
             "segment" : 0.5,
-            "offset" : { "x" : 1, "y" : -6 }
+            "offset" : { "x" : -7, "y" : -6 }
           }, "condition" : "in.files.size() > 0" },
         { "id" : "f19", "to" : "f15", "label" : {
-            "name" : "no"
+            "name" : "no",
+            "offset" : { "x" : 5, "y" : -10 }
           } }
       ]
     }, {
@@ -295,7 +298,7 @@
     }, {
       "id" : "f28",
       "type" : "CallSubStart",
-      "name" : "uploadDocuments(List<UploadWrapper)",
+      "name" : "uploadDocuments(List<UploadWrapper>)",
       "config" : {
         "callSignature" : "uploadDocuments",
         "input" : {
@@ -318,7 +321,8 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 96, "y" : 512 }
+        "at" : { "x" : 96, "y" : 512 },
+        "labelOffset" : { "x" : 1, "y" : 57 }
       },
       "connect" : { "id" : "f39", "to" : "f32" }
     }, {
@@ -356,10 +360,11 @@
         { "id" : "f38", "to" : "f32", "via" : [ { "x" : 672, "y" : 456 }, { "x" : 224, "y" : 456 } ], "label" : {
             "name" : "yes",
             "segment" : 0.5,
-            "offset" : { "x" : 1, "y" : -6 }
+            "offset" : { "x" : -7, "y" : -6 }
           }, "condition" : "in.uploadWrappers.size() > 0" },
         { "id" : "f36", "to" : "f29", "label" : {
-            "name" : "no"
+            "name" : "no",
+            "offset" : { "x" : 5, "y" : -10 }
           } }
       ]
     }, {
