@@ -13,6 +13,7 @@ Dialogs:
                 OAuth: OAuth
                 RedirectURI: Redirect URI
                 RequestToken: Save and Request new Token
+                Title: AdminSetup
 Process:
   com:
     axonivy:
