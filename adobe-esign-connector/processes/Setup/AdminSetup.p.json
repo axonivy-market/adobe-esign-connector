@@ -13,7 +13,7 @@
         "responsible" : "ADOBE_ESIGN_ADMIN",
         "outLink" : "start.ivp",
         "wfuser" : "1",
-        "startName" : "Adobe Sign Connector Admin Setup"
+        "startName" : "<%=ivy.cms.co(\"/Process/com/axonivy/connector/adobe/esign/connector/AdminSetup/name\")%>"
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 64 }

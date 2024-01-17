@@ -72,15 +72,13 @@ public class OAuth2BearerFilter implements javax.ws.rs.client.ClientRequestFilte
 				accessToken = getRefreshedAccessToken(context.getClient(), config, refreshToken.refreshToken());
 				accessTokenStore.setToken(accessToken);
 				resultToken = accessToken.accessToken();
-			}
-			else { // get new access token
+			} else { // get new access token
 				refreshToken = getNewAccessToken(context.getClient(), config);
 				refreshTokenStore.setToken(refreshToken);
 				accessTokenStore.setToken(refreshToken);
 				resultToken = refreshToken.accessToken();
 			}
-		}
-		else { // use existing token
+		} else { // use existing token
 			resultToken = accessToken.accessToken();
 		}
 

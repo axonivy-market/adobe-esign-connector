@@ -8,9 +8,9 @@
   "elements" : [ {
       "id" : "f0",
       "type" : "CallSubStart",
-      "name" : "call()",
+      "name" : "getUser()",
       "config" : {
-        "callSignature" : "call"
+        "callSignature" : "getUser"
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 64 }
@@ -25,6 +25,7 @@
     }, {
       "id" : "f3",
       "type" : "RestClientCall",
+      "name" : "Get User",
       "config" : {
         "path" : "/users",
         "clientId" : "83e80d77-749b-4f53-aaf5-a796f2dab100",

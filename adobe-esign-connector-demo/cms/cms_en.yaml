@@ -11,8 +11,11 @@ Dialogs:
                   Agreement: Agreement
                   AgreementID: Agreement ID
                   AgreementID1: Agreement ID
+                  BrowserNotSupportIframe: Your browser does not support iframes.
+                  Close: Close
                   CreateAgreement: Create Agreement for 1 signer
                   CreateAgreement1: Create Agreement for 2 signers
+                  Demo: Demo
                   Documents: Documents
                   DownloadCombine: Download combined document
                   LoadExisting: Load existing Agreement

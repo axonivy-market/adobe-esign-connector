@@ -19,7 +19,7 @@ import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
 import org.glassfish.jersey.media.multipart.FormDataMultiPart;
 import org.glassfish.jersey.media.multipart.MultiPart;
 
-import com.axonivy.connector.adobe.esign.connector.ui.util.Constants;
+import com.axonivy.connector.adobe.esign.connector.util.Constants;
 
 import api.rest.v6.client.TransientDocumentResponse;
 import ch.ivyteam.ivy.bpm.error.BpmError;

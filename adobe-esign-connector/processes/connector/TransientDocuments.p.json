@@ -43,6 +43,7 @@
     }, {
       "id" : "f7",
       "type" : "RestClientCall",
+      "name" : "Upload Transient Document",
       "config" : {
         "bodyForm" : {
           "File-Name" : "",
@@ -121,6 +122,7 @@
     }, {
       "id" : "f5",
       "type" : "RestClientCall",
+      "name" : "Upload Document",
       "config" : {
         "bodyForm" : {
           "File-Name" : "",
@@ -207,6 +209,7 @@
     }, {
       "id" : "f16",
       "type" : "RestClientCall",
+      "name" : "Upload Transient Document",
       "config" : {
         "bodyForm" : {
           "File-Name" : "",
@@ -383,6 +386,7 @@
     }, {
       "id" : "f42",
       "type" : "RestClientCall",
+      "name" : "Upload Document",
       "config" : {
         "bodyForm" : {
           "File-Name" : "",

@@ -21,6 +21,7 @@ import com.axonivy.connector.adobe.esign.connector.auth.oauth.OAuth2BearerFilter
 import com.axonivy.connector.adobe.esign.connector.auth.oauth.OAuth2TokenRequester.AuthContext;
 import com.axonivy.connector.adobe.esign.connector.auth.oauth.OAuth2UriProperty;
 import com.axonivy.connector.adobe.esign.connector.enums.AdobeVariable;
+import com.axonivy.connector.adobe.esign.connector.util.Constants;
 
 import ch.ivyteam.ivy.bpm.error.BpmPublicErrorBuilder;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -113,7 +114,7 @@ public class OAuth2Feature implements Feature {
 		public String code;
 
 		public AccessTokenRequest(String code, String clientId, String clientSecret, String redirectUri) {
-			this.grantType = "authorization_code";
+			this.grantType = Constants.AUTHORIZATION_CODE;
 			this.clientId = clientId;
 			this.clientSecret = clientSecret;
 			this.redirectUri = redirectUri;
@@ -122,11 +123,11 @@ public class OAuth2Feature implements Feature {
 
 		public MultivaluedMap<String, String> paramsMap() {
 			MultivaluedMap<String, String> values = new MultivaluedHashMap<>();
-			values.put("code", Arrays.asList(code));
-			values.put("client_id", Arrays.asList(clientId));
-			values.put("client_secret", Arrays.asList(clientSecret));
-			values.put("redirect_uri", Arrays.asList(redirectUri));
-			values.put("grant_type", Arrays.asList(grantType));
+			values.put(Constants.ACCESS_TOKEN_REQUEST_CODE, Arrays.asList(code));
+			values.put(Constants.ACCESS_TOKEN_REQUEST_CLIENT_ID, Arrays.asList(clientId));
+			values.put(Constants.ACCESS_TOKEN_REQUEST_CLIENT_SECRET, Arrays.asList(clientSecret));
+			values.put(Constants.ACCESS_TOKEN_REQUEST_REDIRECT_URI, Arrays.asList(redirectUri));
+			values.put(Constants.ACCESS_TOKEN_REQUEST_GRANT_TYPE, Arrays.asList(grantType));
 			return values;
 		}
 
@@ -151,7 +152,7 @@ public class OAuth2Feature implements Feature {
 		public String clientSecret;
 
 		public RefreshTokenRequest(String refreshToken, String clientId, String clientSecret) {
-			this.grantType = "refresh_token";
+			this.grantType = Constants.REFRESH_TOKEN;
 			this.refreshToken = refreshToken;
 			this.clientId = clientId;
 			this.clientSecret = clientSecret;
@@ -159,10 +160,10 @@ public class OAuth2Feature implements Feature {
 
 		public MultivaluedMap<String, String> paramsMap() {
 			MultivaluedMap<String, String> values = new MultivaluedHashMap<>();
-			values.put("client_id", Arrays.asList(clientId));
-			values.put("client_secret", Arrays.asList(clientSecret));
-			values.put("refresh_token", Arrays.asList(refreshToken));
-			values.put("grant_type", Arrays.asList(grantType));
+			values.put(Constants.ACCESS_TOKEN_REQUEST_CLIENT_ID, Arrays.asList(clientId));
+			values.put(Constants.ACCESS_TOKEN_REQUEST_CLIENT_SECRET, Arrays.asList(clientSecret));
+			values.put(Constants.REFRESH_TOKEN, Arrays.asList(refreshToken));
+			values.put(Constants.ACCESS_TOKEN_REQUEST_GRANT_TYPE, Arrays.asList(grantType));
 			return values;
 		}
 
@@ -181,9 +182,11 @@ public class OAuth2Feature implements Feature {
 			throws IllegalArgumentException, UriBuilderException, URISyntaxException {
 		URI redirectUri = OAuth2CallbackUriBuilder.create().toUrl();
 		String authUri = AdobeVariable.AUTHENTICATION_URI.getValue();
-		var uri = UriBuilder.fromUri(new URI(authUri)).queryParam("redirect_uri", redirectUri)
-				.queryParam("response_type", "code").queryParam("client_id", config.readMandatory(Property.CLIENT_ID))
-				.queryParam("scope", getScope(config)).build();
+		var uri = UriBuilder.fromUri(new URI(authUri))
+				.queryParam(Constants.ACCESS_TOKEN_REQUEST_REDIRECT_URI, redirectUri)
+				.queryParam(Constants.RESPONSE_TYPE, Constants.ACCESS_TOKEN_REQUEST_CODE)
+				.queryParam(Constants.ACCESS_TOKEN_REQUEST_CLIENT_ID, config.readMandatory(Property.CLIENT_ID))
+				.queryParam(Constants.SCOPE, getScope(config)).build();
 		return OAuth2RedirectErrorBuilder.create(uri).withMessage("Missing permission from user to act in his name.");
 	}
 

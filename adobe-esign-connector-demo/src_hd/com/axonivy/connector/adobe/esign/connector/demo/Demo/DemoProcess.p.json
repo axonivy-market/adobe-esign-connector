@@ -280,7 +280,7 @@
         },
         "output" : {
           "code" : [
-            "import com.axonivy.connector.adobe.esign.connector.ui.util.FileUtils;",
+            "import com.axonivy.connector.adobe.esign.connector.util.FileUtils;",
             "in.documentContent = FileUtils.toStreamedContent(in.filename, result.download);"
           ]
         }
@@ -460,7 +460,7 @@
         },
         "output" : {
           "code" : [
-            "import com.axonivy.connector.adobe.esign.connector.ui.util.FileUtils;",
+            "import com.axonivy.connector.adobe.esign.connector.util.FileUtils;",
             "in.documentContent = FileUtils.toStreamedContent(in.filename, result.download);"
           ]
         }

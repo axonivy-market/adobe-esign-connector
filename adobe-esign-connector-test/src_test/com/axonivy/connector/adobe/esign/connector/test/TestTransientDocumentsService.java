@@ -20,7 +20,6 @@ import ch.ivyteam.ivy.security.ISession;
 @IvyProcessTest(enableWebServer = true)
 public class TestTransientDocumentsService extends TestAdobeSignConnector {
 
-
 	 private static final BpmElement testeeUploadDocument = BpmProcess.path("connector/TransientDocuments")
 	          .elementName("uploadDocument(file)");
 

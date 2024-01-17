@@ -1,4 +1,4 @@
-package com.axonivy.connector.adobe.esign.connector.ui.util;
+package com.axonivy.connector.adobe.esign.connector.util;
 
 import java.io.ByteArrayInputStream;
 import java.io.FileInputStream;
@@ -9,6 +9,8 @@ import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
 
 import com.axonivy.connector.adobe.esign.connector.rest.DownloadResult;
+
+import ch.ivyteam.ivy.environment.Ivy;
 
 /**
  * Utility class for JSF file handling e.g. to create StreamedContent
@@ -21,13 +23,12 @@ public class FileUtils {
 	public static StreamedContent toStreamedContent(String filename, DownloadResult download) throws FileNotFoundException {
 		return DefaultStreamedContent.builder()
 				.name(filename)
-				.contentType("application/pdf")
+				.contentType(Constants.PDF_CONTENT_TYPE)
 				.stream(() -> {
 					try {
 						return new FileInputStream(download.getFile().getJavaFile());
 					} catch (FileNotFoundException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
+						Ivy.log().warn(e.getMessage());
 					}
 					return null;
 				})
@@ -41,5 +42,4 @@ public class FileUtils {
 
 		return new ByteArrayInputStream(new byte[0]);
 	}
-
 }

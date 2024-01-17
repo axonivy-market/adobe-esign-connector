@@ -5,35 +5,6 @@
     "data" : "com.axonivy.connector.adobe.esign.connector.demo.DemoData"
   },
   "elements" : [ {
-      "id" : "f26",
-      "type" : "RequestStart",
-      "name" : "getUsers.ivp",
-      "config" : {
-        "callSignature" : "getUsers",
-        "outLink" : "getUsers.ivp"
-      },
-      "visual" : {
-        "at" : { "x" : 96, "y" : 496 }
-      },
-      "connect" : { "id" : "f30", "to" : "f27" }
-    }, {
-      "id" : "f27",
-      "type" : "SubProcessCall",
-      "name" : "connector/Users",
-      "config" : {
-        "processCall" : "connector/Users:call()"
-      },
-      "visual" : {
-        "at" : { "x" : 288, "y" : 496 }
-      },
-      "connect" : { "id" : "f29", "to" : "f28" }
-    }, {
-      "id" : "f28",
-      "type" : "TaskEnd",
-      "visual" : {
-        "at" : { "x" : 480, "y" : 496 }
-      }
-    }, {
       "id" : "f31",
       "type" : "RequestStart",
       "name" : "demo.ivp",
