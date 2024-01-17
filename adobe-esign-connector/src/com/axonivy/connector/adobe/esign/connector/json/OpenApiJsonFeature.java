@@ -25,7 +25,7 @@ public class OpenApiJsonFeature extends JsonFeature {
 		return true;
 	}
 
-	public static class JaxRsClientJson extends JacksonJsonProvider {
+	public class JaxRsClientJson extends JacksonJsonProvider {
 		@Override
 		@SuppressWarnings("deprecation")
 		public ObjectMapper locateMapper(Class<?> type, MediaType mediaType) {
