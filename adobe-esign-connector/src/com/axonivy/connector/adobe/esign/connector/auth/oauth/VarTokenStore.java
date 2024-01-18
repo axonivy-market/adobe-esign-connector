@@ -1,5 +1,6 @@
 package com.axonivy.connector.adobe.esign.connector.auth.oauth;
 
+import com.axonivy.connector.adobe.esign.connector.auth.JacksonUtils;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 
@@ -42,8 +43,7 @@ public class VarTokenStore {
 	 * @param token
 	 */
 	public void setToken(Token token) {
-		Gson gson = new Gson();
-		String tokenString = gson.toJson(token);
+		String tokenString = JacksonUtils.writeObjectAsJson(token);
 		Ivy.var().set(varName, tokenString);
 	}
 }
