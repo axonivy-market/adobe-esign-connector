@@ -74,11 +74,7 @@ public class OAuth2Feature implements Feature {
 		if (authCode.isEmpty() && refreshToken.isEmpty()) {
 			try {
 				authRedirectError(ctxt.config, uriFactory).throwError();
-			} catch (IllegalArgumentException e) {
-				Ivy.log().error(e.getMessage());
-			} catch (UriBuilderException e) {
-				Ivy.log().error(e.getMessage());
-			} catch (URISyntaxException e) {
+			} catch (IllegalArgumentException | UriBuilderException | URISyntaxException e) {
 				Ivy.log().error(e.getMessage());
 			}
 		}
