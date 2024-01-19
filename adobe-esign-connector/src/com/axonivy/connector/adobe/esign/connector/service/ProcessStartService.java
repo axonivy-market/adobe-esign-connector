@@ -24,7 +24,7 @@ import ch.ivyteam.ivy.workflow.IWorkflowProcessModelVersion;
 public class ProcessStartService {
 	/**
 	 * Find start link from friendly request path
-	 * 
+	 *
 	 * @param friendlyRequestPath friendly path e.g "Start
 	 *                            Processes/UserExampleGuide/userExampleGuide.ivp"
 	 * @return start link or empty string

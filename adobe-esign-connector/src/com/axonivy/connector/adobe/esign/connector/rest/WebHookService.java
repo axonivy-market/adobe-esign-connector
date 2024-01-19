@@ -22,7 +22,7 @@ import ch.ivyteam.ivy.environment.Ivy;
  * <br/>
  * The service needs to be configured as WebHook in the Adobe Sign profile settings.
  * @see <a href="https://opensource.adobe.com/acrobat-sign/acrobat_sign_events/index.html#creating-a-webhook">WebHooks in Adobe Sign</a>
- * 
+ *
  * @author jpl
  *
  */
@@ -42,16 +42,16 @@ public class WebHookService {
 		} else {
 			response = Response.status(Status.NOT_ACCEPTABLE).build();
 		}
-		
+
 		return response;
 	}
-	
+
 	@POST
 	@Consumes("application/json")
 	public void notification(JsonNode node) {
 		Ivy.log().info(node);
 	}
-	
-	private record ClientIdResponse(String xAdobeSignClientId) {};
-	
+
+	private record ClientIdResponse(String xAdobeSignClientId) {}
+
 }

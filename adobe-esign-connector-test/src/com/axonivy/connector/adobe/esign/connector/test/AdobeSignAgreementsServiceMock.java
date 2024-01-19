@@ -49,7 +49,7 @@ public class AdobeSignAgreementsServiceMock {
 		API.checkParameterNotNull(agreementId, "agreementId");
 		return Response.status(200).entity(TestService.getSamplePdf()).build();
 	}
-	
+
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("agreements/{agreementId}/signingUrls")

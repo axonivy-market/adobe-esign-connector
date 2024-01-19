@@ -28,9 +28,7 @@ public class AdobeSignTransientDocumentsServiceMock {
   @Path("transientDocuments")
   public Response transientDocuemts(String payload) {
     API.checkParameterNotNull(payload, "payload");
-    return Response.status(201)
-            .entity(load("json/uploadDocument.json"))
-            .build();
+	return Response.status(201).entity(load("json/uploadDocument.json")).build();
   }
 
   private static String load(String path) {

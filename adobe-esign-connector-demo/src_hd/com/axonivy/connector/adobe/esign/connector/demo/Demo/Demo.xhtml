@@ -6,9 +6,9 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:pe="http://primefaces.org/ui/extensions">
 <h:body>
-	<ui:composition template="/layouts/basic-10.xhtml">
+	<ui:composition template="/layouts/frame-10-full-width.xhtml">
 
-		<ui:define name="title">Demo</ui:define>
+		<ui:define name="title">#{ivy.cms.co('/Dialogs/com/axonivy/connector/adobe/esign/connector/demo/Demo/Demo')}</ui:define>
 		<ui:define name="content">
 
 			<script type="text/javascript">
@@ -186,7 +186,7 @@
 				<br />
 				<div class="command-btns">
 					<p:commandLink id="close"
-						actionListener="#{ivyWorkflowView.cancel()}" value="Close" />
+						actionListener="#{ivyWorkflowView.cancel()}" value="#{ivy.cms.co('/Dialogs/com/axonivy/connector/adobe/esign/connector/demo/Demo/Close')}" />
 				</div>
 			</h:form>
 
@@ -195,7 +195,7 @@
 				draggable="true" maximizable="true">
 				<iframe id="signIframe" name="signIframe" src="#{data.signingURI}"
 					style="border-width: 0PX;" width="100%" height="100%">
-					<p>Your browser does not support iframes.</p>
+					<p>#{ivy.cms.co('/Dialogs/com/axonivy/connector/adobe/esign/connector/demo/Demo/BrowserNotSupportIframe')}</p>
 				</iframe>
 			</p:dialog>
 

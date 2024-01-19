@@ -12,7 +12,7 @@ public class AdminSetupBean {
 	public String getVariableName(AdobeVariable var) {
 		return var.getVariableName();
 	}
-	
+
 	public String getRedirectUri() {
 		return AdminSetupService.createRedirectUrl();
 	}

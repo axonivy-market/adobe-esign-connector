@@ -29,7 +29,7 @@ import ch.ivyteam.ivy.environment.AppFixture;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.ISession;
 
-@IvyProcessTest
+@IvyProcessTest(enableWebServer = true)
 public class TestAgreementsService extends TestAdobeSignConnector {
 
 	private static final BpmElement testeeCreateAgreement = BpmProcess.path("connector/Agreements")
@@ -111,7 +111,7 @@ public class TestAgreementsService extends TestAdobeSignConnector {
 		ExecutionResult result = bpmClient.start().subProcess(testeeGetSigningUrls)
 				.withParam("agreementId", agreementId).withParam("frameParent", frameParent).execute();
 		AgreementsData data = result.data().last();
-		
+
 		List<SigningUrlResponseSigningUrlSetInfos> signingUrls = data.getSigningUrls();
 
 		assertThat(signingUrls).isNotNull();

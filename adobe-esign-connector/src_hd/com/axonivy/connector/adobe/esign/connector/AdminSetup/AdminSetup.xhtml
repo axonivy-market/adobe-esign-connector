@@ -7,11 +7,13 @@
 	xmlns:pe="http://primefaces.org/ui/extensions">
 <h:body>
 	<ui:composition template="/layouts/frame-10-full-width.xhtml">
-		<ui:define name="title">AdminSetup</ui:define>
+		<ui:define name="title">
+			#{ivy.cms.co('/Dialogs/com/axonivy/connector/adobe/esign/connector/AdminSetup/Title')}
+		</ui:define>
 		<ui:define name="content">
 			<f:event listener="#{logic.preRender}" type="preRenderComponent" />
 			<h2>
-				#{ivy.cms.co('/Dialogs/com/axonivy/connector/adobe/esign/connector/AdminSetup/Title')}
+				#{ivy.cms.co('/Dialogs/com/axonivy/connector/adobe/esign/connector/AdminSetup/Header')}
 			</h2>
 
 			<h:form id="form">
