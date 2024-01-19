@@ -1,7 +1,7 @@
-# MY-PRODUCT-NAME
+# Adobe Sign Connector
 
-[![CI Build](https://github.com/axonivy-market/REPO-NAME/actions/workflows/ci.yml/badge.svg)](https://github.com/axonivy-market/REPO-NAME/actions/workflows/ci.yml)
+[![CI Build](https://github.com/axonivy-market/adobesign-connector/actions/workflows/ci.yml/badge.svg)](https://github.com/axonivy-market/adobesign-connector/actions/workflows/ci.yml)
 
-"YOUR SHORT DESCRIPTION GOES HERE"
+The Adobe Sign Connector simplifies the authentication process and enables easy integration and use of Adobe Sign services for electronical signing of documents.
 
-Read our [documentation](MY-PRODUCT-NAME-product/README.md).
+Read our [documentation](adobe-esign-connector-product/README.md).
