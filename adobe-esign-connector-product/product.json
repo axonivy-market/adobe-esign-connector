@@ -1,9 +1,10 @@
 {
+  "$schema": "https://json-schema.axonivy.com/market/10.0.0/product.json",
   "installers": [
     {
-      "id": "maven-dependency",
+      "id": "maven-import",
       "data": {
-        "dependencies": [
+        "projects": [
           {
             "groupId": "com.axonivy.connector.adobe.esign",
             "artifactId": "adobe-esign-connector",
@@ -23,9 +24,9 @@
       }
     },
     {
-      "id": "maven-import",
+      "id": "maven-dependency",
       "data": {
-        "projects": [
+        "dependencies": [
           {
             "groupId": "com.axonivy.connector.adobe.esign",
             "artifactId": "adobe-esign-connector",
