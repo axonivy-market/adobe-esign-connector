@@ -7,7 +7,7 @@ import ch.ivyteam.ivy.rest.client.RestClient;
 import ch.ivyteam.ivy.rest.client.RestClient.Builder;
 import ch.ivyteam.ivy.rest.client.RestClients;
 
-@IvyProcessTest(enableWebServer = true)
+@IvyProcessTest
 public class TestAdobeSignConnector {
 	protected static final String TRANSIENT_DOCUMENTS = "TransientDocuments";
 	protected static final String AGREEMENTS = "Agreements";
